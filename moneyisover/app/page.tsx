@@ -5,7 +5,6 @@ import { useState } from "react";
 export default function Home() {
   const [active, setActive] = useState("Team Settings");
   const [team, setTeam] = useState("");
-  const [selected, setSelected] = useState("Brasil");
 
   const menu = [
     "API Setup",
@@ -14,43 +13,79 @@ export default function Home() {
     "Endpoints Configs",
     "Rate Limiting",
     "Data Encryption",
+    "Text",
     "Access Control",
     "Incident Response",
     "Fetching Data",
     "Custom Reports",
     "Real Time Analytics",
+    "Exporting Data",
+    "Dashboard Integration",
   ];
 
   return (
-    <main className="min-h-screen bg-[#eef2f7] text-slate-950">
-      <aside className="fixed left-0 top-0 h-full w-72 border-r border-slate-200 bg-white/80 p-5 backdrop-blur-xl">
-        <div className="mb-8 flex items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-xl font-black text-white shadow-lg shadow-blue-500/30">
-            M
-          </div>
-          <div>
-            <h1 className="text-xl font-black">MoneyIsOver</h1>
-            <p className="text-xs font-bold text-slate-400">Post-money OS</p>
-          </div>
+    <main className="min-h-screen bg-[#f7f8fa] text-[#111827]">
+      <aside className="fixed left-0 top-0 h-full w-[230px] border-r border-[#e5e7eb] bg-white px-5 py-4">
+        <div className="mb-6 flex items-center gap-3">
+          <div className="text-3xl font-black text-[#2563eb]">M</div>
+          <select className="w-full rounded-md border border-[#e5e7eb] bg-white px-3 py-2 text-xs font-semibold outline-none">
+            <option>MoneyIsOver</option>
+          </select>
         </div>
 
-        <button className="mb-6 w-full rounded-2xl border border-slate-200 bg-white p-4 text-left font-bold shadow-sm hover:border-blue-300">
-          🌍 Global Community
-        </button>
-
-        <p className="mb-3 text-xs font-black tracking-widest text-slate-400">
-          CONFIGURATION
+        <p className="mb-3 text-[11px] font-bold uppercase text-[#111827]">
+          Configuration
         </p>
 
         <div className="space-y-1">
-          {menu.map((item) => (
+          {menu.slice(0, 5).map((item) => (
             <button
               key={item}
               onClick={() => setActive(item)}
-              className={`w-full rounded-xl px-4 py-3 text-left text-sm transition ${
+              className={`w-full rounded-md px-3 py-2 text-left text-[13px] ${
                 active === item
-                  ? "bg-blue-600 font-black text-white shadow-lg shadow-blue-500/25"
-                  : "text-slate-600 hover:bg-slate-100 hover:text-slate-950"
+                  ? "bg-[#f1f5ff] text-[#2563eb]"
+                  : "text-[#111827] hover:bg-[#f5f5f5]"
+              }`}
+            >
+              {item}
+            </button>
+          ))}
+        </div>
+
+        <p className="mb-3 mt-6 text-[11px] font-bold uppercase text-[#111827]">
+          Security
+        </p>
+
+        <div className="space-y-1">
+          {menu.slice(5, 9).map((item) => (
+            <button
+              key={item}
+              onClick={() => setActive(item)}
+              className={`w-full rounded-md px-3 py-2 text-left text-[13px] ${
+                active === item
+                  ? "bg-[#f1f5ff] text-[#2563eb]"
+                  : "text-[#111827] hover:bg-[#f5f5f5]"
+              }`}
+            >
+              {item}
+            </button>
+          ))}
+        </div>
+
+        <p className="mb-3 mt-6 text-[11px] font-bold uppercase text-[#111827]">
+          Analytics
+        </p>
+
+        <div className="space-y-1">
+          {menu.slice(9).map((item) => (
+            <button
+              key={item}
+              onClick={() => setActive(item)}
+              className={`w-full rounded-md px-3 py-2 text-left text-[13px] ${
+                active === item
+                  ? "bg-[#f1f5ff] text-[#2563eb]"
+                  : "text-[#111827] hover:bg-[#f5f5f5]"
               }`}
             >
               {item}
@@ -59,88 +94,81 @@ export default function Home() {
         </div>
       </aside>
 
-      <section className="ml-72 p-8">
-        <header className="mb-8 flex items-center justify-between">
-          <div>
-            <h2 className="text-3xl font-black">{active}</h2>
-            <p className="mt-1 text-sm text-slate-500">
-              Home / MoneyIsOver / Community / {active}
-            </p>
+      <section className="ml-[230px] p-6">
+        <header className="mb-6 flex items-center justify-between">
+          <div className="flex items-center gap-3 text-sm">
+            <h1 className="font-semibold">{active}</h1>
+            <span className="text-gray-400">Home / MoneyIsOver / Configuration / {active}</span>
           </div>
 
-          <div className="flex gap-3">
-            <input
-              placeholder="Search..."
-              className="rounded-2xl border border-slate-200 bg-white px-5 py-3 outline-none shadow-sm"
-            />
-            <button className="rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
-              🔔
-            </button>
-            <button className="rounded-2xl bg-slate-950 px-6 py-3 font-black text-white shadow-lg">
+          <div className="flex items-center gap-4">
+            <button className="text-xl text-gray-500">⌕</button>
+            <button className="text-xl text-gray-500">◴</button>
+            <button className="rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-semibold">
               Export
             </button>
           </div>
         </header>
 
-        <section className="relative mb-6 overflow-hidden rounded-[2rem] bg-slate-950 p-10 text-white shadow-2xl">
-          <div className="absolute right-[-80px] top-[-80px] h-72 w-72 rounded-full bg-blue-500/40 blur-3xl" />
-          <div className="absolute bottom-[-100px] left-1/3 h-72 w-72 rounded-full bg-cyan-400/30 blur-3xl" />
+        <div className="grid gap-6 lg:grid-cols-[1fr_360px]">
+          <div className="rounded-xl border border-gray-200 bg-white p-10 text-center shadow-sm">
+            <div className="mx-auto mb-6 text-7xl">✊</div>
 
-          <div className="relative z-10 grid gap-10 lg:grid-cols-[1fr_360px]">
-            <div>
-              <span className="rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-cyan-200">
-                O mundo pós-dinheiro já começou
-              </span>
+            <h2 className="text-xl font-semibold">
+              Swift Setup for New Communities
+            </h2>
 
-              <h3 className="mt-8 max-w-3xl text-6xl font-black leading-none">
-                Ajude pessoas. Ganhe valor. Crie influência local.
-              </h3>
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-gray-600">
+              Ajude pessoas na rua ou online, ganhe Money Is Over Coin e troque
+              por produtos, serviços e descontos.
+            </p>
 
-              <p className="mt-6 max-w-2xl text-lg text-slate-300">
-                Ajude pessoas na rua ou online, ganhe Money Is Over Coin e
-                troque por produtos, serviços e descontos.
-              </p>
+            <button
+              onClick={() => alert("Criar comunidade")}
+              className="mt-6 rounded-md bg-[#2563eb] px-5 py-2 text-sm font-semibold text-white"
+            >
+              Create Team
+            </button>
+          </div>
 
-              <button
-                onClick={() => alert("Em breve: criação de comunidade")}
-                className="mt-8 rounded-2xl bg-blue-500 px-8 py-4 font-black text-white shadow-lg shadow-blue-500/40"
-              >
-                Criar Comunidade
-              </button>
+          <div className="rounded-xl border border-gray-200 bg-white shadow-sm">
+            <div className="border-b border-gray-200 p-5">
+              <h3 className="font-semibold">Highlights</h3>
             </div>
 
-            <div className="rounded-[2rem] border border-white/10 bg-white/10 p-6 backdrop-blur-xl">
-              <p className="text-sm text-slate-300">Impacto total</p>
-              <div className="mt-2 flex items-end gap-3">
-                <span className="text-5xl font-black">295.7k</span>
-                <span className="rounded-lg bg-green-400/20 px-2 py-1 text-sm font-bold text-green-300">
+            <div className="p-5">
+              <p className="text-sm text-gray-500">All time impact</p>
+              <div className="mt-1 flex items-center gap-3">
+                <span className="text-3xl font-bold">$295.7k</span>
+                <span className="rounded bg-green-50 px-2 py-1 text-xs text-green-600">
                   +2.7%
                 </span>
               </div>
 
-              <div className="mt-6 flex h-3 overflow-hidden rounded-full bg-white/10">
-                <div className="w-[55%] bg-green-400" />
-                <div className="w-[30%] bg-red-400" />
-                <div className="w-[15%] bg-purple-400" />
+              <div className="mt-5 flex h-2 overflow-hidden rounded-full">
+                <div className="w-[55%] bg-green-500" />
+                <div className="w-[30%] bg-red-500" />
+                <div className="w-[15%] bg-purple-500" />
               </div>
 
-              <div className="mt-6 space-y-3">
+              <div className="mt-4 flex gap-4 text-xs">
+                <span>● Metronic</span>
+                <span>● Bundle</span>
+                <span>● MetronicNest</span>
+              </div>
+
+              <div className="mt-5 border-t pt-3">
                 {[
-                  ["Online", "$172k", "↑ 3.9%"],
+                  ["Online Store", "$172k", "↑ 3.9%"],
                   ["Facebook", "$85k", "↓ 0.7%"],
                   ["Instagram", "$36k", "↑ 8.2%"],
                   ["Google", "$26k", "↑ 8.2%"],
+                  ["Retail", "$7k", "↓ 0.7%"],
                 ].map(([name, value, percent]) => (
-                  <div key={name} className="flex justify-between text-sm">
-                    <span>{name}</span>
-                    <b>{value}</b>
-                    <span
-                      className={
-                        percent.includes("↑")
-                          ? "text-green-300"
-                          : "text-red-300"
-                      }
-                    >
+                  <div key={name} className="flex justify-between py-2 text-sm">
+                    <span className="text-gray-700">{name}</span>
+                    <span>{value}</span>
+                    <span className={percent.includes("↑") ? "text-green-600" : "text-red-600"}>
                       {percent}
                     </span>
                   </div>
@@ -148,74 +176,105 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </div>
 
-        <div className="grid gap-6 lg:grid-cols-[1fr_360px]">
-          <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
-            <div className="flex items-center justify-between border-b p-5">
-              <h3 className="text-xl font-black">Comunidades</h3>
+        <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_360px]">
+          <div className="rounded-xl border border-gray-200 bg-white shadow-sm">
+            <div className="flex items-center justify-between border-b border-gray-200 p-4">
+              <h3 className="font-semibold">Teams</h3>
               <input
                 placeholder="Search Teams"
-                className="rounded-xl border border-slate-200 px-4 py-2 outline-none"
+                className="w-44 rounded-md border border-gray-200 px-3 py-2 text-sm outline-none"
               />
+            </div>
+
+            <div className="grid grid-cols-[50px_1fr_140px_150px_130px] border-b bg-gray-50 px-4 py-3 text-xs text-gray-500">
+              <span>□</span>
+              <span>Team</span>
+              <span>Rating</span>
+              <span>Last Modified</span>
+              <span>Members</span>
             </div>
 
             {[
               ["Product Management", "⭐⭐⭐⭐⭐", "21 Oct, 2024", "+10"],
-              ["Marketing Team", "⭐⭐⭐⭐☆", "15 Oct, 2024", "+7"],
-              ["Bairro Centro", "⭐⭐⭐⭐⭐", "08 Nov, 2024", "+34"],
+              ["Marketing Team", "⭐⭐⭐⭐☆", "15 Oct, 2024", "G"],
+              ["HR Department", "⭐⭐⭐⭐⭐", "10 Oct, 2024", "+A"],
+              ["Bairro Centro", "⭐⭐⭐⭐⭐", "05 Oct, 2024", "+34"],
             ].map((row) => (
               <button
                 key={row[0]}
                 onClick={() => alert(`Abrindo ${row[0]}`)}
-                className="grid w-full grid-cols-[1fr_120px_150px_100px] items-center border-b p-5 text-left hover:bg-blue-50"
+                className="grid w-full grid-cols-[50px_1fr_140px_150px_130px] items-center border-b px-4 py-3 text-left text-sm hover:bg-gray-50"
               >
+                <span>□</span>
                 <span>
-                  <strong>{row[0]}</strong>
-                  <p className="text-sm text-slate-500">
-                    Comunidade e colaboração local
-                  </p>
+                  <b>{row[0]}</b>
+                  <p className="text-xs text-gray-500">Comunidade e colaboração</p>
                 </span>
                 <span>{row[1]}</span>
                 <span>{row[2]}</span>
-                <span className="font-black text-blue-600">{row[3]}</span>
+                <span className="font-bold text-green-600">{row[3]}</span>
               </button>
             ))}
+
+            <div className="flex items-center justify-between p-4 text-sm">
+              <span>
+                Show <button className="rounded border px-3 py-1">5</button> per page
+              </span>
+              <span>1-4 of 4 &nbsp; ← &nbsp; 1 &nbsp; →</span>
+            </div>
           </div>
 
-          <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
-            <h3 className="mb-5 text-xl font-black">Escolha sua região</h3>
+          <div className="rounded-xl border border-gray-200 bg-white shadow-sm">
+            <div className="border-b border-gray-200 p-5">
+              <h3 className="font-semibold">Block List</h3>
+            </div>
 
-            <select
-              value={selected}
-              onChange={(e) => setSelected(e.target.value)}
-              className="mb-3 w-full rounded-2xl border border-slate-200 p-4 outline-none"
-            >
-              <option>Brasil</option>
-              <option>Estados Unidos</option>
-              <option>Argentina</option>
-            </select>
+            <div className="p-5">
+              <p className="mb-4 text-sm leading-6 text-gray-600">
+                Escolha país, cidade e bairro para entrar na comunidade local.
+              </p>
 
-            <input
-              className="mb-3 w-full rounded-2xl border border-slate-200 p-4 outline-none"
-              placeholder="Digite sua cidade"
-            />
+              <select className="mb-3 w-full rounded-md border border-gray-200 p-3 text-sm outline-none">
+                <option>Brasil</option>
+                <option>Estados Unidos</option>
+                <option>Argentina</option>
+              </select>
 
-            <input
-              className="mb-3 w-full rounded-2xl border border-slate-200 p-4 outline-none"
-              placeholder="Digite seu bairro"
-              value={team}
-              onChange={(e) => setTeam(e.target.value)}
-            />
+              <input
+                className="mb-3 w-full rounded-md border border-gray-200 p-3 text-sm outline-none"
+                placeholder="Digite sua cidade"
+              />
 
-            <button
-              onClick={() =>
-                alert(`Entrando no bairro: ${team || "não informado"}`)
-              }
-              className="w-full rounded-2xl bg-blue-600 p-4 font-black text-white shadow-lg shadow-blue-500/25"
-            >
-              Entrar no bairro
-            </button>
+              <div className="flex">
+                <input
+                  className="w-full rounded-l-md border border-gray-200 p-3 text-sm outline-none"
+                  placeholder="Digite seu bairro"
+                  value={team}
+                  onChange={(e) => setTeam(e.target.value)}
+                />
+                <button
+                  onClick={() => alert(`Entrando no bairro: ${team || "não informado"}`)}
+                  className="rounded-r-md bg-[#2563eb] px-5 text-sm font-semibold text-white"
+                >
+                  Add
+                </button>
+              </div>
+
+              <div className="mt-5 space-y-4">
+                {["Esther Howard", "Tyler Hero", "Arlene McCoy"].map((name, i) => (
+                  <div key={name} className="flex items-center gap-3">
+                    <div className="h-9 w-9 rounded-full bg-gray-200" />
+                    <div>
+                      <p className="text-sm font-semibold">{name}</p>
+                      <p className="text-xs text-gray-500">{i + 6} commits</p>
+                    </div>
+                    <button className="ml-auto text-gray-400">⌫</button>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
