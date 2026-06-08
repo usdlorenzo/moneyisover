@@ -13,7 +13,7 @@ export default function Home() {
 
       <section className="flex min-h-[80vh] flex-col items-center justify-center px-6 text-center">
         <h1 className="max-w-4xl text-5xl font-black leading-tight md:text-7xl">
-          Ajude pessoas na rua ou online.
+         Ajude pessoas na rua ou online agora.
         </h1>
 
         <p className="mt-6 max-w-3xl text-lg text-gray-300 md:text-2xl">
