@@ -285,7 +285,8 @@ export default function Home() {
   </button>
 </Box>
 
-          <Box pos={positions.discussions} onMouseDown={(e) => startDrag("discussions", e)} w="430px" h="255px">
+          <Box pos={positions.discussions} onMouseDown={(e) => startDrag("discussions", e)}   w="430px"
+  h="340px">
             <div className="mb-3 flex justify-between">
               <b className="text-sm">Discussões em Destaque</b>
               <button className="text-xs text-emerald-300">Ver todas</button>
