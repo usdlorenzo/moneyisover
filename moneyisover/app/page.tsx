@@ -102,7 +102,7 @@ export default function Home() {
           desc: "Clima atualizado",
         });
       } catch {
-        sether({
+    setWeather({
           temp: "28",
           city: "Localização",
           desc: "Clima indisponível",
