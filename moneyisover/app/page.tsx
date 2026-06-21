@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [time, setTime] = useState("");
-  const [active, setActive] = useState("Página Inicial");
+  const [active, setActive] = useState("Página inicial");
+  const [time, setTime] = useState("14:35");
 
   useEffect(() => {
-    const updateTime = () => {
+    function updateClock() {
       const now = new Date();
       setTime(
         now.toLocaleTimeString("pt-BR", {
@@ -15,322 +15,482 @@ export default function Home() {
           minute: "2-digit",
         })
       );
-    };
+    }
 
-    updateTime();
-    const timer = setInterval(updateTime, 1000);
+    updateClock();
+    const timer = setInterval(updateClock, 1000);
     return () => clearInterval(timer);
   }, []);
 
   const menu = [
-    "Página Inicial",
+    "Página inicial",
     "Publicações",
     "Vídeos de Ajuda",
     "Moedas",
     "Ranking",
+    "Comunidades",
+    "Eventos",
+    "Mensagens",
+    "Notificações",
+    "Favoritos",
+    "Salvos",
     "Moderação",
+    "Relatórios",
     "Configurações",
   ];
 
-  const posts = [
+  const discussions = [
     ["💼", "Estou pensando em mudar de carreira", "Preciso de opiniões sinceras.", "15", "Hoje", "+1"],
-    ["💔", "Meu relacionamento terminou", "Quero ouvir experiências.", "28", "Hoje", "+1"],
     ["🚀", "Vale a pena abrir empresa?", "Quem já empreendeu?", "42", "Ontem", "+1"],
-    ["💸", "Estou perdido financeiramente", "Como recomeçar?", "36", "Ontem", "+1"],
     ["🧠", "Como vencer a procrastinação?", "Preciso de ajuda.", "19", "Hoje", "+1"],
-    ["🏙️", "Mudar de cidade vale a pena?", "Estou em dúvida.", "24", "Hoje", "+1"],
     ["🎓", "Faculdade ainda compensa?", "Mercado mudou muito.", "31", "Ontem", "+1"],
-    ["🤝", "Como fazer novas amizades?", "Me sinto isolado.", "17", "Hoje", "+1"],
     ["⚖️", "Empreender ou CLT?", "O que vocês fariam?", "44", "Ontem", "+1"],
-    ["✨", "Como melhorar autoestima?", "Aceito sugestões.", "52", "Hoje", "+1"],
   ];
 
   const videos = [
-    ["Distribuição de alimentos", "Ajuda a famílias carentes.", "+2", "03:24"],
-    ["Ajuda a idoso", "Suporte em transporte e compras.", "+2", "02:15"],
-    ["Doação de roupas", "Entrega para pessoas necessitadas.", "+2", "02:45"],
-    ["Resgate de cachorro", "Animal abandonado resgatado.", "+2", "01:48"],
-    ["Aula gratuita", "Matemática para jovens.", "+2", "02:37"],
-    ["Cestas básicas", "Ação solidária comunitária.", "+2", "02:58"],
+    ["Distribuição de alimentos", "Ajuda a famílias carentes.", "03:24"],
+    ["Ajuda a idoso", "Suporte em transporte...", "02:15"],
+    ["Doação de roupas", "Entrega para pessoas...", "02:45"],
+    ["Resgate de cachorro", "Animal abandonado...", "01:48"],
+    ["Aula gratuita", "Ensino de matemática...", "02:37"],
+    ["Cestas básicas", "Ação solidária...", "02:37"],
+  ];
+
+  const actions = [
+    ["✎", "Criar Desabafo"],
+    ["?", "Fazer Pergunta"],
+    ["↩", "Responder"],
+    ["▻", "Vídeos de Ajuda"],
+    ["◎", "Doar Moedas"],
+    ["☷", "Meus Desabafos"],
+    ["▣", "Meus Vídeos"],
+    ["↺", "Histórico"],
+    ["♕", "Conquistas"],
+    ["✉", "Convites"],
+    ["♟", "Amigos"],
+    ["♚", "Grupos"],
+    ["◴", "Eventos"],
+    ["▱", "Salvos"],
+    ["▥", "Estatísticas"],
+    ["▣", "Carteira"],
+    ["▤", "Loja"],
+    ["♙", "Níveis"],
+    ["▧", "Relatórios"],
+    ["⚙", "Configurações"],
+  ];
+
+  const activities = [
+    ["👩", "Mariana respondeu sua pergunta", "há 10 min"],
+    ["🟣", "João ganhou +2 moedas", "há 30 min"],
+    ["🟢", "Vídeo aprovado: Doação de roupas", "há 1 hora"],
+    ["👩‍🦰", "Ana publicou um novo desabafo", "há 2 horas"],
+    ["👨", "Carlos entrou na comunidade", "há 3 horas"],
+  ];
+
+  const reminders = [
+    ["◴", "Reunião com a equipe", "Hoje", "15:00"],
+    ["◷", "Enviar relatório mensal", "Hoje", "17:30"],
+    ["♙", "Treino na academia", "Hoje", "19:00"],
+    ["✚", "Dentista", "Amanhã", "09:00"],
   ];
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#050b18] text-white">
-      <div className="fixed inset-0 bg-[radial-gradient(circle_at_top_left,#2563eb55,transparent_35%),radial-gradient(circle_at_bottom_right,#22c55e33,transparent_30%),linear-gradient(135deg,#050b18,#0f172a,#10213f)]" />
-      <div className="fixed inset-0 bg-[url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=80')] bg-cover bg-center opacity-25" />
+    <main className="min-h-screen overflow-hidden bg-slate-950 text-white">
+      <div className="fixed inset-0 bg-[url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=90')] bg-cover bg-center" />
+      <div className="fixed inset-0 bg-gradient-to-br from-blue-950/25 via-slate-900/10 to-orange-950/20" />
+      <div className="fixed inset-0 backdrop-blur-[2px]" />
 
-      <div className="relative z-10 flex min-h-screen flex-col lg:flex-row">
-        <aside className="hidden w-[270px] shrink-0 border-r border-white/10 bg-white/10 p-5 backdrop-blur-2xl lg:block">
-          <div className="mb-8 flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-400 to-violet-600 text-2xl font-black shadow-lg shadow-blue-500/30">
-              M
-            </div>
-            <div>
-              <h1 className="text-lg font-bold tracking-wide">MONEY IS OVER</h1>
-              <p className="text-xs text-white/50">Sua ajuda tem valor</p>
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            {menu.map((item) => (
-              <button
-                key={item}
-                onClick={() => setActive(item)}
-                className={`w-full rounded-2xl px-4 py-3 text-left text-sm transition ${
-                  active === item
-                    ? "bg-white/20 text-white shadow-lg shadow-blue-500/20"
-                    : "text-white/70 hover:bg-white/10 hover:text-white"
-                }`}
-              >
-                {item}
-              </button>
-            ))}
-          </div>
-
-          <div className="mt-8 rounded-3xl border border-white/10 bg-white/10 p-5 shadow-2xl backdrop-blur-xl">
-            <p className="text-sm text-white/60">Minhas moedas</p>
-            <div className="mt-2 flex items-end justify-between">
-              <span className="text-3xl font-bold">1.284</span>
-              <span className="rounded-full bg-green-400/20 px-3 py-1 text-xs text-green-300">
-                +18%
-              </span>
-            </div>
-          </div>
-
-          <div className="mt-5 rounded-3xl border border-white/10 bg-white/10 p-5 backdrop-blur-xl">
-            <p className="mb-3 text-sm text-white/60">Nível da comunidade</p>
-            <div className="h-2 overflow-hidden rounded-full bg-white/10">
-              <div className="h-full w-[72%] rounded-full bg-gradient-to-r from-blue-400 to-violet-500" />
-            </div>
-            <p className="mt-2 text-xs text-white/50">2.350 / 3.000 XP</p>
-          </div>
-        </aside>
-
-        <section className="flex-1 p-4 lg:p-8">
-          <header className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <div className="flex items-center justify-between lg:hidden">
+      <section className="relative z-10 flex min-h-screen items-center justify-center p-4 md:p-8">
+        <div className="grid h-auto w-full max-w-[1540px] grid-cols-1 gap-4 rounded-[30px] border border-white/25 bg-white/10 p-4 shadow-[0_30px_120px_rgba(0,0,0,0.45)] backdrop-blur-2xl lg:grid-cols-[210px_1fr] xl:max-h-[900px]">
+          <aside className="rounded-[24px] border border-white/15 bg-white/10 p-3 backdrop-blur-2xl">
+            <div className="mb-5 px-2 pt-2">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-400 to-violet-600 font-black">
+                <div className="text-5xl font-black leading-none text-blue-400 drop-shadow-[0_0_18px_rgba(59,130,246,0.9)]">
                   M
                 </div>
-                <b>MONEY IS OVER</b>
-              </div>
-
-              <button className="rounded-full border border-white/10 bg-white/10 px-4 py-2 text-xs backdrop-blur-xl">
-                Entrar
-              </button>
-            </div>
-
-            <div className="hidden w-[380px] rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-white/50 backdrop-blur-xl lg:block">
-              Buscar pessoas, tópicos, vídeos...
-            </div>
-
-            <div className="flex items-center justify-between gap-4 rounded-3xl border border-white/10 bg-white/10 p-4 backdrop-blur-2xl lg:min-w-[560px]">
-              <div>
-                <p className="text-3xl font-bold">{time}</p>
-                <p className="text-xs text-white/50">Hoje • Brasil</p>
-              </div>
-
-              <div className="h-10 w-px bg-white/10" />
-
-              <div className="flex items-center gap-3">
-                <span className="text-4xl">⛅</span>
                 <div>
-                  <p className="text-2xl font-bold">28°C</p>
-                  <p className="text-xs text-white/50">Clima local</p>
-                </div>
-              </div>
-
-              <div className="hidden h-10 w-px bg-white/10 sm:block" />
-
-              <div className="hidden sm:block">
-                <p className="text-sm font-semibold">Compromisso</p>
-                <p className="text-xs text-white/50">Reunião às 15:00</p>
-              </div>
-            </div>
-          </header>
-
-          <div className="mb-5 flex gap-2 overflow-x-auto lg:hidden">
-            {menu.map((item) => (
-              <button
-                key={item}
-                onClick={() => setActive(item)}
-                className={`whitespace-nowrap rounded-full px-4 py-2 text-xs ${
-                  active === item ? "bg-blue-500 text-white" : "bg-white/10 text-white/70"
-                }`}
-              >
-                {item}
-              </button>
-            ))}
-          </div>
-
-          <div className="grid gap-5 xl:grid-cols-[1fr_360px]">
-            <div className="rounded-[28px] border border-white/10 bg-white/10 p-5 shadow-2xl backdrop-blur-2xl lg:p-8">
-              <p className="text-white/70">Bem-vindo ao</p>
-              <h2 className="mt-1 bg-gradient-to-r from-blue-300 via-cyan-300 to-violet-400 bg-clip-text text-3xl font-black text-transparent lg:text-5xl">
-                Money Is Over
-              </h2>
-              <p className="mt-3 max-w-2xl text-sm leading-6 text-white/70 lg:text-base">
-                Uma plataforma futurista onde desabafos, opiniões e boas ações
-                viram reputação, impacto e moedas.
-              </p>
-
-              <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-                <button className="rounded-2xl bg-gradient-to-r from-blue-500 to-violet-600 px-5 py-3 text-sm font-bold shadow-lg shadow-blue-500/30">
-                  Criar Desabafo
-                </button>
-                <button className="rounded-2xl border border-white/10 bg-white/10 px-5 py-3 text-sm font-bold backdrop-blur-xl">
-                  Enviar Vídeo de Ajuda
-                </button>
-              </div>
-            </div>
-
-            <div className="rounded-[28px] border border-white/10 bg-white/10 p-5 shadow-2xl backdrop-blur-2xl">
-              <div className="flex items-center justify-between">
-                <h3 className="font-bold">Clima Atual</h3>
-                <span className="text-4xl">⛅</span>
-              </div>
-
-              <div className="mt-4">
-                <p className="text-5xl font-black">28°C</p>
-                <p className="text-white/60">Parcialmente nublado</p>
-                <p className="text-sm text-white/50">Baseado na sua localização</p>
-              </div>
-
-              <div className="mt-5 grid grid-cols-3 gap-3 border-t border-white/10 pt-4 text-sm">
-                <div>
-                  <p className="text-white/40">Sensação</p>
-                  <b>29°C</b>
-                </div>
-                <div>
-                  <p className="text-white/40">Umidade</p>
-                  <b>60%</b>
-                </div>
-                <div>
-                  <p className="text-white/40">Vento</p>
-                  <b>12 km/h</b>
+                  <h1 className="text-sm font-bold tracking-wide">
+                    MONEY IS OVER
+                  </h1>
+                  <p className="text-[10px] text-white/55">
+                    Sua voz tem valor.
+                  </p>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="mt-5 grid gap-5 xl:grid-cols-[1fr_360px]">
-            <div className="rounded-[28px] border border-white/10 bg-white/10 p-4 shadow-2xl backdrop-blur-2xl">
-              <div className="mb-3 flex items-center justify-between">
-                <h3 className="font-bold">Discussões em Destaque</h3>
-                <button className="text-sm text-cyan-300">Ver todos</button>
-              </div>
-
-              <div className="space-y-2">
-                {posts.map((post) => (
-                  <button
-                    key={post[1]}
-                    className="grid w-full grid-cols-[42px_1fr_auto] items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3 text-left transition hover:bg-white/10"
-                  >
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-xl">
-                      {post[0]}
-                    </div>
-
-                    <div>
-                      <b className="text-sm">{post[1]}</b>
-                      <p className="text-xs text-white/50">{post[2]}</p>
-                    </div>
-
-                    <div className="text-right text-xs text-white/60">
-                      <p>💬 {post[3]}</p>
-                      <p className="text-green-300">{post[5]}</p>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="space-y-5">
-              <div className="rounded-[28px] border border-white/10 bg-white/10 p-5 shadow-2xl backdrop-blur-2xl">
-                <h3 className="font-bold">Moedas da Comunidade</h3>
-                <p className="mt-5 text-5xl font-black">1.284</p>
-                <p className="text-sm text-white/50">Total distribuído hoje</p>
-
-                <div className="mt-5 h-28 rounded-3xl bg-gradient-to-br from-blue-500/30 via-violet-500/20 to-green-400/20" />
-              </div>
-
-              <div className="rounded-[28px] border border-white/10 bg-white/10 p-5 shadow-2xl backdrop-blur-2xl">
-                <div className="mb-4 flex items-center justify-between">
-                  <h3 className="font-bold">Compromissos</h3>
-                  <button className="text-sm text-cyan-300">Ver todos</button>
-                </div>
-
-                {[
-                  ["Reunião com equipe", "15:00"],
-                  ["Enviar relatório mensal", "17:30"],
-                  ["Treino na academia", "19:00"],
-                ].map((item) => (
-                  <div
-                    key={item[0]}
-                    className="flex justify-between border-b border-white/10 py-3 text-sm"
-                  >
-                    <span>{item[0]}</span>
-                    <span className="text-white/50">{item[1]}</span>
-                  </div>
-                ))}
-
-                <button className="mt-4 text-sm text-cyan-300">
-                  + Adicionar lembrete
-                </button>
-              </div>
-
-              <div className="grid grid-cols-3 gap-3">
-                {[
-                  ["Pergunta", "+1"],
-                  ["Resposta", "+1"],
-                  ["Vídeo", "+2"],
-                ].map((item) => (
-                  <div
-                    key={item[0]}
-                    className="rounded-2xl border border-white/10 bg-white/10 p-4 text-sm backdrop-blur-xl"
-                  >
-                    <p className="text-white/60">{item[0]}</p>
-                    <b className="text-green-300">{item[1]}</b>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-5 rounded-[28px] border border-white/10 bg-white/10 p-4 shadow-2xl backdrop-blur-2xl">
-            <div className="mb-4 flex items-center justify-between">
-              <h3 className="font-bold">Vídeos de Ajuda Recentes</h3>
-              <button className="text-sm text-cyan-300">Ver todos</button>
-            </div>
-
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-6">
-              {videos.map((video, index) => (
-                <div
-                  key={video[0]}
-                  className="overflow-hidden rounded-3xl border border-white/10 bg-white/10"
+            <div className="space-y-1">
+              {menu.map((item) => (
+                <button
+                  key={item}
+                  onClick={() => setActive(item)}
+                  className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-xs transition ${
+                    active === item
+                      ? "bg-gradient-to-r from-blue-500 to-violet-500 text-white shadow-lg shadow-blue-500/25"
+                      : "text-white/80 hover:bg-white/10"
+                  }`}
                 >
-                  <div className="relative flex h-36 items-center justify-center bg-gradient-to-br from-blue-500/30 to-violet-500/20 text-4xl">
-                    ▶
-                    <span className="absolute bottom-2 right-2 rounded bg-black/50 px-2 py-1 text-xs">
-                      {video[3]}
-                    </span>
-                  </div>
-
-                  <div className="p-3">
-                    <h4 className="text-sm font-bold">{video[0]}</h4>
-                    <p className="mt-1 line-clamp-2 text-xs text-white/50">
-                      {video[1]}
-                    </p>
-                    <p className="mt-3 text-sm font-bold text-green-300">
-                      {video[2]} moedas
-                    </p>
-                  </div>
-                </div>
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10">
+                    {item === "Página inicial"
+                      ? "⌂"
+                      : item === "Publicações"
+                      ? "▤"
+                      : item === "Vídeos de Ajuda"
+                      ? "▻"
+                      : item === "Moedas"
+                      ? "$"
+                      : item === "Ranking"
+                      ? "▥"
+                      : item === "Comunidades"
+                      ? "♚"
+                      : item === "Eventos"
+                      ? "◴"
+                      : item === "Mensagens"
+                      ? "✉"
+                      : item === "Notificações"
+                      ? "♧"
+                      : item === "Favoritos"
+                      ? "☆"
+                      : item === "Salvos"
+                      ? "▱"
+                      : item === "Moderação"
+                      ? "♢"
+                      : item === "Relatórios"
+                      ? "▧"
+                      : "⚙"}
+                  </span>
+                  {item}
+                </button>
               ))}
             </div>
+
+            <div className="mt-4 rounded-2xl border border-white/10 bg-white/10 p-3">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-xs text-white/70">Nível da Comunidade</p>
+                  <p className="text-xs font-bold">Nível 12</p>
+                </div>
+                <span className="text-white/50">›</span>
+              </div>
+
+              <div className="mt-3 h-2 overflow-hidden rounded-full bg-black/25">
+                <div className="h-full w-[72%] rounded-full bg-gradient-to-r from-blue-400 to-violet-500" />
+              </div>
+
+              <p className="mt-2 text-right text-[10px] text-white/60">
+                2.350 / 3.000 XP
+              </p>
+            </div>
+
+            <div className="mt-3 rounded-2xl border border-white/10 bg-white/10 p-3">
+              <p className="text-xs text-white/70">Minhas Moedas</p>
+              <div className="mt-1 flex items-center justify-between">
+                <div>
+                  <p className="text-2xl font-bold">1.284</p>
+                  <p className="text-xs font-bold text-green-300">+18%</p>
+                </div>
+                <span className="text-4xl">🪙</span>
+              </div>
+            </div>
+
+            <div className="mt-3 rounded-2xl border border-white/10 bg-white/10 p-3 text-xs">
+              <button className="flex w-full justify-between border-b border-white/10 py-2">
+                <span>Central de Ajuda</span>
+                <span>●</span>
+              </button>
+              <button className="flex w-full justify-between py-2">
+                <span>Sair da conta</span>
+                <span>›</span>
+              </button>
+            </div>
+          </aside>
+
+          <div className="min-w-0">
+            <header className="mb-4 flex flex-col gap-3 xl:flex-row xl:items-center xl:justify-between">
+              <div className="relative max-w-[480px]">
+                <input
+                  placeholder="Buscar pessoas, tópicos, vídeos, comunidades..."
+                  className="w-full rounded-2xl border border-white/20 bg-white/15 px-5 py-3 pr-12 text-xs text-white outline-none backdrop-blur-xl placeholder:text-white/55"
+                />
+                <span className="absolute right-4 top-3 text-lg text-white/80">
+                  ⌕
+                </span>
+              </div>
+
+              <div className="flex items-center gap-4 self-end">
+                {["☼", "♧", "✉"].map((icon, index) => (
+                  <button
+                    key={icon}
+                    className="relative flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/10 text-lg backdrop-blur-xl"
+                  >
+                    {icon}
+                    {index === 1 && (
+                      <span className="absolute right-1 top-1 h-2.5 w-2.5 rounded-full bg-red-500" />
+                    )}
+                  </button>
+                ))}
+
+                <div className="relative h-12 w-12 overflow-hidden rounded-full border border-white/20 bg-white/20">
+                  <div className="flex h-full w-full items-center justify-center text-2xl">
+                    👨
+                  </div>
+                  <span className="absolute bottom-1 right-1 h-3 w-3 rounded-full bg-green-400" />
+                </div>
+              </div>
+            </header>
+
+            <div className="mb-4 grid gap-3 xl:grid-cols-[210px_1fr_300px]">
+              <div className="rounded-2xl border border-white/15 bg-white/12 p-6 backdrop-blur-2xl">
+                <div className="flex items-center justify-between">
+                  <p className="text-4xl font-bold">{time}</p>
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-xl">
+                    ◴
+                  </span>
+                </div>
+                <p className="mt-3 text-xs text-white/65">
+                  Sábado, 24 de Maio
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-white/15 bg-white/12 p-5 backdrop-blur-2xl">
+                <div className="flex items-center gap-6">
+                  <span className="text-6xl">⛅</span>
+                  <div>
+                    <p className="text-4xl font-bold">28°C</p>
+                    <p className="text-xs">Parcialmente nublado</p>
+                    <p className="text-xs text-white/60">São Paulo, SP</p>
+                  </div>
+
+                  <div className="ml-auto hidden grid-cols-3 gap-8 text-xs sm:grid">
+                    <div>
+                      <p className="text-white/45">Sensação</p>
+                      <b>29°C</b>
+                    </div>
+                    <div>
+                      <p className="text-white/45">Umidade</p>
+                      <b>60%</b>
+                    </div>
+                    <div>
+                      <p className="text-white/45">Vento</p>
+                      <b>12 km/h</b>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-white/15 bg-white/12 p-5 backdrop-blur-2xl">
+                <div className="mb-2 flex justify-between">
+                  <p className="text-sm font-bold">Próximo compromisso</p>
+                  <button className="text-xs text-cyan-300">Ver todos</button>
+                </div>
+
+                <div className="flex items-center gap-3 rounded-2xl bg-black/20 p-3">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/15">
+                    ◴
+                  </span>
+                  <div>
+                    <p className="text-sm font-bold">Reunião com a equipe</p>
+                    <p className="text-xs text-white/60">Hoje às 15:00</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid gap-3 xl:grid-cols-[1.1fr_0.85fr]">
+              <div className="space-y-3">
+                <div className="rounded-2xl border border-blue-300/25 bg-black/25 p-7 backdrop-blur-2xl">
+                  <p className="text-sm">Bem-vindo ao</p>
+                  <h2 className="mt-1 text-4xl font-black">
+                    Money{" "}
+                    <span className="bg-gradient-to-r from-blue-300 to-violet-400 bg-clip-text text-transparent">
+                      Is Over
+                    </span>
+                  </h2>
+                  <p className="mt-4 max-w-lg text-sm leading-6 text-white/80">
+                    Mais que uma plataforma. Um novo jeito de conectar, ajudar e
+                    crescer.
+                  </p>
+
+                  <div className="mt-7 flex flex-wrap gap-3">
+                    <button className="rounded-xl bg-gradient-to-r from-blue-500 to-violet-600 px-5 py-3 text-xs font-bold shadow-lg shadow-blue-500/25">
+                      ✎ Criar Desabafo
+                    </button>
+                    <button className="rounded-xl border border-white/20 bg-white/10 px-5 py-3 text-xs font-bold">
+                      ▻ Enviar Vídeo de Ajuda
+                    </button>
+                  </div>
+                </div>
+
+                <div className="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-2xl">
+                  <div className="mb-3 flex items-center justify-between">
+                    <h3 className="text-sm font-bold">Discussões em Destaque</h3>
+                    <button className="text-xs text-cyan-300">Ver todos</button>
+                  </div>
+
+                  <div className="space-y-1">
+                    {discussions.map((item) => (
+                      <button
+                        key={item[1]}
+                        className="grid w-full grid-cols-[44px_1fr_50px_60px_45px_20px] items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-left text-xs hover:bg-white/10"
+                      >
+                        <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 text-lg">
+                          {item[0]}
+                        </span>
+                        <span>
+                          <b className="block">{item[1]}</b>
+                          <span className="text-white/55">{item[2]}</span>
+                        </span>
+                        <span>💬 {item[3]}</span>
+                        <span className="text-white/65">{item[4]}</span>
+                        <span className="font-bold text-green-300">{item[5]}</span>
+                        <span>›</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-2xl">
+                  <div className="mb-3 flex items-center justify-between">
+                    <h3 className="text-sm font-bold">Vídeos de Ajuda Recentes</h3>
+                    <button className="text-xs text-cyan-300">Ver todos</button>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
+                    {videos.map((video) => (
+                      <div
+                        key={video[0]}
+                        className="overflow-hidden rounded-xl border border-white/10 bg-white/10"
+                      >
+                        <div className="relative flex h-24 items-center justify-center bg-gradient-to-br from-blue-400/30 to-orange-300/20 text-2xl">
+                          ▶
+                          <span className="absolute bottom-1 right-1 rounded bg-black/60 px-1.5 py-0.5 text-[10px]">
+                            {video[2]}
+                          </span>
+                        </div>
+                        <div className="p-2">
+                          <p className="line-clamp-2 text-[11px] font-bold">
+                            {video[0]}
+                          </p>
+                          <p className="line-clamp-1 text-[10px] text-white/55">
+                            {video[1]}
+                          </p>
+                          <p className="mt-1 text-[11px] font-bold text-green-300">
+                            +2 moedas
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <div className="grid gap-3 lg:grid-cols-2">
+                  <div className="rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-2xl">
+                    <div className="flex justify-between">
+                      <h3 className="text-sm font-bold">Moedas da Comunidade</h3>
+                      <button className="text-xs text-cyan-300">Ver gráfico</button>
+                    </div>
+                    <p className="mt-5 text-4xl font-bold">1.284</p>
+                    <p className="text-xs text-white/60">Total distribuído hoje</p>
+                    <div className="mt-5 h-24 rounded-2xl bg-gradient-to-tr from-blue-500/20 via-violet-500/25 to-green-400/20" />
+                  </div>
+
+                  <div className="rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-2xl">
+                    <h3 className="text-sm font-bold">Atividade da Comunidade</h3>
+                    <div className="mt-3 space-y-2">
+                      {activities.slice(0, 4).map((activity) => (
+                        <div
+                          key={activity[1]}
+                          className="flex items-center justify-between border-b border-white/10 pb-2 text-[11px]"
+                        >
+                          <span className="flex items-center gap-2">
+                            <span className="text-lg">{activity[0]}</span>
+                            {activity[1]}
+                          </span>
+                          <span className="text-white/50">{activity[2]}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-4 gap-2">
+                  {actions.map((action) => (
+                    <button
+                      key={action[1]}
+                      className="min-h-[72px] rounded-xl border border-white/12 bg-white/8 p-2 text-center text-[11px] backdrop-blur-xl hover:bg-white/15"
+                    >
+                      <span className="mb-2 block text-2xl text-blue-300">
+                        {action[0]}
+                      </span>
+                      {action[1]}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="grid gap-3 lg:grid-cols-[1fr_260px]">
+                  <div className="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-2xl">
+                    <div className="mb-3 flex justify-between">
+                      <h3 className="text-sm font-bold">
+                        Lembretes e Compromissos
+                      </h3>
+                      <button className="text-xs text-cyan-300">Ver agenda</button>
+                    </div>
+
+                    {reminders.map((item) => (
+                      <div
+                        key={item[1]}
+                        className="grid grid-cols-[30px_1fr_60px_50px] border-b border-white/10 py-2 text-xs"
+                      >
+                        <span>{item[0]}</span>
+                        <span>{item[1]}</span>
+                        <span className="text-white/55">{item[2]}</span>
+                        <span>{item[3]}</span>
+                      </div>
+                    ))}
+
+                    <button className="mt-3 text-xs text-cyan-300">
+                      + Adicionar lembrete
+                    </button>
+                  </div>
+
+                  <div className="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-2xl">
+                    <div className="mb-3 flex items-center justify-between">
+                      <button>‹</button>
+                      <h3 className="text-sm font-bold">Maio 2025</h3>
+                      <button>›</button>
+                    </div>
+
+                    <div className="grid grid-cols-7 gap-2 text-center text-[11px] text-white/60">
+                      {["D", "S", "T", "Q", "Q", "S", "S"].map((d) => (
+                        <span key={d}>{d}</span>
+                      ))}
+
+                      {[
+                        27, 28, 29, 30, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+                        13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+                        27, 28, 29, 30, 31,
+                      ].map((day, i) => (
+                        <span
+                          key={`${day}-${i}`}
+                          className={`rounded-full py-1 ${
+                            day === 24
+                              ? "bg-gradient-to-r from-blue-500 to-violet-600 text-white"
+                              : ""
+                          }`}
+                        >
+                          {day}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </main>
   );
 }
