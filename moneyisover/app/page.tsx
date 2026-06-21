@@ -16,16 +16,25 @@ export default function Home() {
   ];
 
   const posts = [
-    ["Estou pensando em mudar de carreira", "Preciso de opiniões sinceras de quem já passou por isso.", "15 comentários", "Hoje", "+1 moeda"],
-    ["Meu relacionamento terminou", "Quero desabafar e ouvir conselhos reais.", "28 comentários", "Hoje", "+1 moeda"],
-    ["Vale a pena abrir empresa no Brasil?", "Quero opinião de quem já empreendeu.", "42 comentários", "Ontem", "+1 moeda"],
-    ["Estou perdido financeiramente", "Como vocês começariam de novo?", "36 comentários", "Ontem", "+1 moeda"],
+    ["Estou pensando em mudar de carreira", "Preciso de opiniões sinceras.", "15 comentários", "Hoje", "+1 moeda"],
+    ["Meu relacionamento terminou", "Quero ouvir experiências.", "28 comentários", "Hoje", "+1 moeda"],
+    ["Vale a pena abrir empresa?", "Quem já empreendeu?", "42 comentários", "Ontem", "+1 moeda"],
+    ["Estou perdido financeiramente", "Como recomeçar?", "36 comentários", "Ontem", "+1 moeda"],
+    ["Como vencer a procrastinação?", "Preciso de ajuda.", "19 comentários", "Hoje", "+1 moeda"],
+    ["Mudar de cidade vale a pena?", "Estou em dúvida.", "24 comentários", "Hoje", "+1 moeda"],
+    ["Faculdade ainda compensa?", "Mercado mudou muito.", "31 comentários", "Ontem", "+1 moeda"],
+    ["Como fazer novas amizades?", "Me sinto isolado.", "17 comentários", "Hoje", "+1 moeda"],
+    ["Empreender ou CLT?", "O que vocês fariam?", "44 comentários", "Ontem", "+1 moeda"],
+    ["Como melhorar autoestima?", "Aceito sugestões.", "52 comentários", "Hoje", "+1 moeda"],
   ];
 
   const videos = [
-    ["Distribuição de alimentos", "Usuário ajudou famílias em situação difícil.", "2 moedas"],
-    ["Ajuda a idoso", "Usuário ajudou um idoso com compras e transporte.", "2 moedas"],
-    ["Doação de roupas", "Usuário gravou a entrega de roupas para pessoas necessitadas.", "2 moedas"],
+    ["Distribuição de alimentos", "Ajuda a famílias carentes.", "2 moedas"],
+    ["Ajuda a idoso", "Suporte em transporte e compras.", "2 moedas"],
+    ["Doação de roupas", "Entrega para pessoas necessitadas.", "2 moedas"],
+    ["Resgate de cachorro", "Animal encontrado abandonado.", "2 moedas"],
+    ["Aula gratuita", "Ensino de matemática para jovens.", "2 moedas"],
+    ["Entrega de cestas básicas", "Ação solidária comunitária.", "2 moedas"],
   ];
 
   function MenuItem({ item }: { item: string }) {
@@ -83,19 +92,19 @@ export default function Home() {
           </div>
         </header>
 
-        <div className="mb-6 rounded-xl border border-gray-200 bg-white p-10 text-center shadow-sm">
-          <div className="mx-auto mb-6 text-7xl">✊</div>
+        <div className="mb-6 rounded-xl border border-gray-200 bg-white p-5 text-center shadow-sm">
+          <div className="mx-auto mb-3 text-4xl">✊</div>
 
-          <h2 className="text-2xl font-bold">
+          <h2 className="text-xl font-bold">
             Ajude pessoas, compartilhe opiniões e ganhe moedas
           </h2>
 
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-gray-600">
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-gray-600">
             No Money Is Over, você ganha moedas ao publicar desabafos, responder
             perguntas e ajudar pessoas de verdade através de vídeos de caridade.
           </p>
 
-          <div className="mt-6 flex justify-center gap-3">
+          <div className="mt-5 flex justify-center gap-3">
             <button className="rounded-md bg-blue-600 px-5 py-2 text-sm font-semibold text-white">
               Criar Desabafo
             </button>
@@ -125,22 +134,24 @@ export default function Home() {
               <span>Recompensa</span>
             </div>
 
-            {posts.map((row) => (
-              <button
-                key={row[0]}
-                onClick={() => alert(`Abrindo: ${row[0]}`)}
-                className="grid w-full grid-cols-[1fr_150px_120px_120px] items-center border-b px-4 py-4 text-left text-sm hover:bg-gray-50"
-              >
-                <span>
-                  <b>{row[0]}</b>
-                  <p className="text-xs text-gray-500">{row[1]}</p>
-                </span>
+            <div className="max-h-[700px] overflow-y-auto">
+              {posts.map((row) => (
+                <button
+                  key={row[0]}
+                  onClick={() => alert(`Abrindo: ${row[0]}`)}
+                  className="grid w-full grid-cols-[1fr_150px_120px_120px] items-center border-b px-4 py-4 text-left text-sm hover:bg-gray-50"
+                >
+                  <span>
+                    <b>{row[0]}</b>
+                    <p className="text-xs text-gray-500">{row[1]}</p>
+                  </span>
 
-                <span>{row[2]}</span>
-                <span>{row[3]}</span>
-                <span className="font-bold text-green-600">{row[4]}</span>
-              </button>
-            ))}
+                  <span>{row[2]}</span>
+                  <span>{row[3]}</span>
+                  <span className="font-bold text-green-600">{row[4]}</span>
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="rounded-xl border border-gray-200 bg-white shadow-sm">
@@ -191,9 +202,12 @@ export default function Home() {
             </button>
           </div>
 
-          <div className="grid gap-4 p-5 lg:grid-cols-3">
+          <div className="grid gap-4 p-5 md:grid-cols-2 lg:grid-cols-3">
             {videos.map((video) => (
-              <div key={video[0]} className="rounded-lg border border-gray-200 p-4">
+              <div
+                key={video[0]}
+                className="rounded-lg border border-gray-200 p-4"
+              >
                 <div className="mb-4 flex h-36 items-center justify-center rounded-lg bg-gray-100 text-5xl">
                   ▶
                 </div>
