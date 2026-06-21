@@ -170,7 +170,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen overflow-hidden bg-black text-white">
-      <div className="fixed inset-0 bg-[url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=2200&q=90')] bg-cover bg-center" />
+     <div className="fixed inset-0 bg-[url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=90')] bg-cover bg-center" />
       <div className="fixed inset-0 bg-black/45" />
 
       <section className="relative z-10 flex min-h-screen items-center justify-center p-5">
@@ -341,20 +341,26 @@ export default function Home() {
             ))}
           </Box>
 
-          <Box pos={positions.calendar} onMouseDown={(e) => startDrag("calendar", e)} w="270px" h="180px">
-            <div className="mb-3 flex justify-between">
-              <button>‹</button>
-              <b className="text-sm capitalize">{monthName}</b>
-              <button>›</button>
-            </div>
-            <div className="grid grid-cols-7 gap-1 text-center text-[11px]">
-              {["D","S","T","Q","Q","S","S",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31].map((d, i) => (
-                <span key={i} className={`rounded-full py-1 ${d === today ? "bg-emerald-400 text-black" : "text-white/75"}`}>
-                  {d}
-                </span>
-              ))}
-            </div>
-          </Box>
+        <Box pos={positions.calendar} onMouseDown={(e) => startDrag("calendar", e)} w="285px" h="215px">
+  <div className="mb-3 flex justify-between">
+    <button>‹</button>
+    <b className="text-sm capitalize">{monthName}</b>
+    <button>›</button>
+  </div>
+
+  <div className="grid grid-cols-7 gap-1 text-center text-[10px]">
+    {["D","S","T","Q","Q","S","S",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31].map((d, i) => (
+      <span
+        key={i}
+        className={`rounded-full py-[3px] ${
+          d === today ? "bg-emerald-400 text-black" : "text-white/75"
+        }`}
+      >
+        {d}
+      </span>
+    ))}
+  </div>
+</Box>
         </div>
       </section>
     </main>
