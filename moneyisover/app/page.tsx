@@ -170,7 +170,13 @@ export default function Home() {
 
   return (
     <main className="min-h-screen overflow-hidden bg-black text-white">
-     <div className="fixed inset-0 bg-[url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=90')] bg-cover bg-center" />
+  <div
+  className="fixed inset-0 bg-cover bg-center"
+  style={{
+    backgroundImage:
+      "url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=2200&q=90')",
+  }}
+/>
       <div className="fixed inset-0 bg-black/45" />
 
       <section className="relative z-10 flex min-h-screen items-center justify-center p-5">
