@@ -29,7 +29,7 @@ export default function Home() {
     time: { x: 120, y: 95 },
    weather: { x: 360, y: 90 },
     prices: { x: 1100, y: 95 },
-    : { x: 120, y: 235 },
+    hero : { x: 120, y: 235 },
     courses: { x: 520, y: 245 },
     discussions: { x: 120, y: 415 },
     actions: { x: 560, y: 430 },
@@ -251,7 +251,7 @@ export default function Home() {
             </div>
           </Box>
 
-      <Box pos={positions.hero} onMouseDown={(e) => startDrag("hero", e)}  w="390px"
+      <Box pos={positions.} onMouseDown={(e) => startDrag("hero", e)}  w="390px"
   h="240px" w="390px"
   h="240px">
   <p className="text-xs uppercase tracking-[0.25em] text-white/45">
