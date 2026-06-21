@@ -29,7 +29,7 @@ export default function Home() {
     time: { x: 120, y: 95 },
    weather: { x: 360, y: 90 },
     prices: { x: 1100, y: 95 },
-    hero: { x: 120, y: 235 },
+    : { x: 120, y: 235 },
     courses: { x: 520, y: 245 },
     discussions: { x: 120, y: 415 },
     actions: { x: 560, y: 430 },
@@ -176,7 +176,7 @@ export default function Home() {
     backgroundImage: "url('/fundo.png')",
   }}
 />
-      <div className="fixed inset-0 bg-black/45" />
+   <div className="fixed inset-0 bg-black/18" />
 
       <section className="relative z-10 flex min-h-screen items-center justify-center p-5">
         <div className="relative h-[850px] w-full max-w-[1450px] overflow-hidden rounded-[34px] border border-white/15 bg-black/10 shadow-[0_40px_140px_rgba(0,0,0,0.8)] backdrop-blur-[2px]">
@@ -251,7 +251,9 @@ export default function Home() {
             </div>
           </Box>
 
-      <Box pos={positions.hero} onMouseDown={(e) => startDrag("hero", e)} w="390px" h="190px">
+      <Box pos={positions.hero} onMouseDown={(e) => startDrag("hero", e)}  w="390px"
+  h="240px" w="390px"
+  h="240px">
   <p className="text-xs uppercase tracking-[0.25em] text-white/45">
     Sua casa digital
   </p>
