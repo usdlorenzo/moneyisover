@@ -27,10 +27,10 @@ export default function Home() {
 
   const [positions, setPositions] = useState<Record<BoxKey, { x: number; y: number }>>({
     time: { x: 120, y: 95 },
-    weather: { x: 330, y: 95 },
+   weather: { x: 360, y: 90 },
     prices: { x: 1100, y: 95 },
     hero: { x: 120, y: 235 },
-    courses: { x: 520, y: 235 },
+    courses: { x: 520, y: 245 },
     discussions: { x: 120, y: 415 },
     actions: { x: 560, y: 430 },
     videos: { x: 120, y: 650 },
@@ -102,7 +102,7 @@ export default function Home() {
           desc: "Clima atualizado",
         });
       } catch {
-        setWeather({
+        sether({
           temp: "28",
           city: "Localização",
           desc: "Clima indisponível",
@@ -170,11 +170,10 @@ export default function Home() {
 
   return (
     <main className="min-h-screen overflow-hidden bg-black text-white">
-  <div
+<div
   className="fixed inset-0 bg-cover bg-center"
   style={{
-    backgroundImage:
-      "url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=90')",
+    backgroundImage: "url('/fundo.jpg')",
   }}
 />
       <div className="fixed inset-0 bg-black/45" />
@@ -223,21 +222,22 @@ export default function Home() {
             <p className="mt-2 text-xs text-white/60 capitalize">{date}</p>
           </Box>
 
-          <Box pos={positions.weather} onMouseDown={(e) => startDrag("weather", e)} w="300px" h="135px">
-            <div className="flex items-center gap-4">
-              <span className="text-5xl">⛅</span>
-              <div>
-                <p className="text-4xl font-bold">{weather.temp}°C</p>
-                <p className="text-xs text-white/70">{weather.desc}</p>
-                <p className="text-xs text-white/50">{weather.city}</p>
-              </div>
-            </div>
-            <div className="mt-4 grid grid-cols-3 text-xs text-white/65">
-              <span>Sensação<br /><b>{Number(weather.temp) + 1}°C</b></span>
-              <span>Umidade<br /><b>60%</b></span>
-              <span>Vento<br /><b>12 km/h</b></span>
-            </div>
-          </Box>
+       <Box pos={positions.weather} onMouseDown={(e) => startDrag("weather", e)} w="330px" h="155px">
+  <div className="flex items-center gap-4">
+    <span className="text-5xl">⛅</span>
+    <div>
+      <p className="text-4xl font-bold">{weather.temp}°C</p>
+      <p className="text-xs text-white/70">{weather.desc}</p>
+      <p className="text-xs text-white/50">{weather.city}</p>
+    </div>
+  </div>
+
+  <div className="mt-4 grid grid-cols-3 gap-2 text-xs text-white/65">
+    <span>Sensação<br /><b>{Number(weather.temp) + 1}°C</b></span>
+    <span>Umidade<br /><b>60%</b></span>
+    <span>Vento<br /><b>12 km/h</b></span>
+  </div>
+</Box>
 
           <Box pos={positions.prices} onMouseDown={(e) => startDrag("prices", e)} w="280px" h="175px">
             <div className="flex justify-between">
@@ -269,18 +269,21 @@ export default function Home() {
             </div>
           </Box>
 
-          <Box pos={positions.courses} onMouseDown={(e) => startDrag("courses", e)} w="380px" h="175px">
-            <b className="text-sm">Cursos Únicos</b>
-            <p className="mt-3 text-xs text-white/75">
-              Você sabia que sem treinar metacognição você repete os mesmos erros?
-            </p>
-            <p className="mt-3 text-xs text-white/75">
-              O córtex pré-frontal é sua capacidade de tomar decisões racionais — e precisa ser treinado.
-            </p>
-            <button className="mt-4 rounded-full bg-emerald-400 px-4 py-2 text-xs font-bold text-black">
-              Ver cursos
-            </button>
-          </Box>
+       <Box pos={positions.courses} onMouseDown={(e) => startDrag("courses", e)} w="390px" h="205px">
+  <b className="text-sm">Cursos Únicos</b>
+
+  <p className="mt-3 text-xs leading-5 text-white/75">
+    Você sabia que sem treinar metacognição você repete os mesmos erros?
+  </p>
+
+  <p className="mt-3 text-xs leading-5 text-white/75">
+    O córtex pré-frontal é sua capacidade de tomar decisões racionais — e precisa ser treinado.
+  </p>
+
+  <button className="mt-4 rounded-full bg-emerald-400 px-4 py-2 text-xs font-bold text-black">
+    Ver cursos
+  </button>
+</Box>
 
           <Box pos={positions.discussions} onMouseDown={(e) => startDrag("discussions", e)} w="430px" h="255px">
             <div className="mb-3 flex justify-between">
