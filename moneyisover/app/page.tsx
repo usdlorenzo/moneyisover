@@ -251,23 +251,35 @@ export default function Home() {
             </div>
           </Box>
 
-          <Box pos={positions.hero} onMouseDown={(e) => startDrag("hero", e)} w="360px" h="165px">
-            <p className="text-sm text-white/65">Bem-vindo ao</p>
-            <h2 className="mt-1 text-3xl font-bold">
-              Money <span className="text-emerald-300">Is Over</span>
-            </h2>
-            <p className="mt-3 text-sm text-white/70">
-              Conecte, opine, ajude e ganhe moedas.
-            </p>
-            <div className="mt-4 flex gap-3">
-              <button className="rounded-full bg-emerald-400 px-5 py-3 text-xs font-bold text-black">
-                Criar Desabafo
-              </button>
-              <button className="rounded-full border border-white/15 px-5 py-3 text-xs">
-                Enviar Vídeo
-              </button>
-            </div>
-          </Box>
+      <Box pos={positions.hero} onMouseDown={(e) => startDrag("hero", e)} w="390px" h="190px">
+  <p className="text-xs uppercase tracking-[0.25em] text-white/45">
+    Sua casa digital
+  </p>
+
+  <h2 className="mt-2 text-3xl font-black leading-tight">
+    Money <span className="text-emerald-300">Is Over</span>
+  </h2>
+
+  <p className="mt-3 max-w-[310px] text-sm leading-5 text-white/70">
+    Aprenda, ajude pessoas, participe da comunidade e ganhe moedas.
+  </p>
+
+  <div className="mt-4 flex items-center gap-2 text-[11px] text-white/55">
+    <span>🔥 127 pessoas ajudadas hoje</span>
+    <span>•</span>
+    <span>🪙 2.341 moedas</span>
+  </div>
+
+  <div className="mt-4 flex gap-3">
+    <button className="rounded-full bg-emerald-400 px-5 py-3 text-xs font-bold text-black shadow-lg shadow-emerald-400/20">
+      Criar Desabafo
+    </button>
+
+    <button className="rounded-full border border-white/15 bg-white/5 px-5 py-3 text-xs text-white/85">
+      Enviar Vídeo
+    </button>
+  </div>
+</Box>
 
        <Box pos={positions.courses} onMouseDown={(e) => startDrag("courses", e)} w="390px" h="205px">
   <b className="text-sm">Cursos Únicos</b>
