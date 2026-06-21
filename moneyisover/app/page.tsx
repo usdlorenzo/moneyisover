@@ -251,9 +251,7 @@ export default function Home() {
             </div>
           </Box>
 
-      <Box pos={positions.} onMouseDown={(e) => startDrag("hero", e)}  w="390px"
-  h="240px" w="390px"
-  h="240px">
+<Box pos={positions.hero} onMouseDown={(e) => startDrag("hero", e)} w="390px" h="240px">
   <p className="text-xs uppercase tracking-[0.25em] text-white/45">
     Sua casa digital
   </p>
