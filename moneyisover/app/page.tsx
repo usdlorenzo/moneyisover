@@ -173,7 +173,7 @@ export default function Home() {
 <div
   className="fixed inset-0 bg-cover bg-center"
   style={{
-    backgroundImage: "url('/fundo.jpg')",
+    backgroundImage: "url('/fundo.png')",
   }}
 />
       <div className="fixed inset-0 bg-black/45" />
