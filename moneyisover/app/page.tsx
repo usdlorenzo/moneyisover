@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
+import { useEffect, useState, type PointerEvent, type ReactNode } from "react";
 
 type BoxKey =
   | "time"
@@ -56,8 +56,8 @@ export default function Home() {
   const [zIndexes, setZIndexes] = useState<Record<BoxKey, number>>(initialZ);
 
   useEffect(() => {
-    const saved = localStorage.getItem("moneyisover-layout-v4");
-    const savedZ = localStorage.getItem("moneyisover-z-v4");
+    const saved = localStorage.getItem("moneyisover-layout-v6");
+    const savedZ = localStorage.getItem("moneyisover-z-v6");
 
     if (saved) {
       try {
@@ -73,11 +73,11 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("moneyisover-layout-v4", JSON.stringify(positions));
+    localStorage.setItem("moneyisover-layout-v6", JSON.stringify(positions));
   }, [positions]);
 
   useEffect(() => {
-    localStorage.setItem("moneyisover-z-v4", JSON.stringify(zIndexes));
+    localStorage.setItem("moneyisover-z-v6", JSON.stringify(zIndexes));
   }, [zIndexes]);
 
   useEffect(() => {
@@ -160,17 +160,19 @@ export default function Home() {
     });
   }
 
-  function startDrag(key: BoxKey, e: MouseEvent<HTMLDivElement>) {
+  function startDrag(key: BoxKey, e: PointerEvent<HTMLDivElement>) {
     bringToFront(key);
 
     const target = e.target as HTMLElement;
     if (["BUTTON", "INPUT", "TEXTAREA", "VIDEO"].includes(target.tagName)) return;
 
+    e.preventDefault();
+
     const startX = e.clientX;
     const startY = e.clientY;
     const initial = positions[key];
 
-    function move(ev: globalThis.MouseEvent) {
+    function move(ev: globalThis.PointerEvent) {
       setPositions((prev) => ({
         ...prev,
         [key]: {
@@ -181,17 +183,17 @@ export default function Home() {
     }
 
     function stop() {
-      window.removeEventListener("mousemove", move);
-      window.removeEventListener("mouseup", stop);
+      window.removeEventListener("pointermove", move);
+      window.removeEventListener("pointerup", stop);
     }
 
-    window.addEventListener("mousemove", move);
-    window.addEventListener("mouseup", stop);
+    window.addEventListener("pointermove", move);
+    window.addEventListener("pointerup", stop);
   }
 
   function resetLayout() {
-    localStorage.removeItem("moneyisover-layout-v4");
-    localStorage.removeItem("moneyisover-z-v4");
+    localStorage.removeItem("moneyisover-layout-v6");
+    localStorage.removeItem("moneyisover-z-v6");
     setPositions(initialPositions);
     setZIndexes(initialZ);
   }
@@ -236,16 +238,16 @@ export default function Home() {
   ];
 
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="min-h-screen overflow-auto bg-black text-white">
       <div
         className="fixed inset-0 bg-cover bg-center"
         style={{ backgroundImage: "url('/fundo.png')" }}
       />
       <div className="fixed inset-0 bg-black/10" />
 
-      <section className="relative z-10 min-h-screen p-4 lg:flex lg:items-center lg:justify-center">
-        <div className="relative mx-auto min-h-screen w-full max-w-[1450px] overflow-visible rounded-[34px] border border-white/15 bg-black/5 p-4 shadow-[0_40px_140px_rgba(0,0,0,0.8)] backdrop-blur-[1px] lg:h-[850px] lg:min-h-0 lg:overflow-hidden">
-          <header className="mb-4 flex items-center gap-3 lg:absolute lg:left-10 lg:top-8">
+      <section className="relative z-10 min-h-screen w-[1450px] p-5">
+        <div className="relative h-[850px] w-[1450px] overflow-hidden rounded-[34px] border border-white/15 bg-black/5 shadow-[0_40px_140px_rgba(0,0,0,0.8)] backdrop-blur-[1px]">
+          <header className="absolute left-10 top-8 z-[5] flex items-center gap-3">
             <div className="text-4xl font-black">M</div>
             <div>
               <h1 className="text-sm font-bold tracking-widest">MONEY IS OVER</h1>
@@ -253,12 +255,12 @@ export default function Home() {
             </div>
           </header>
 
-          <div className="mb-4 rounded-full border border-white/10 bg-black/55 px-6 py-4 text-sm text-white/50 lg:absolute lg:left-[390px] lg:top-9 lg:w-[620px]">
+          <div className="absolute left-[390px] top-9 z-[5] w-[620px] rounded-full border border-white/10 bg-black/55 px-6 py-4 text-sm text-white/50">
             Buscar pessoas, tópicos, vídeos, comunidades...
             <span className="float-right text-white">⌕</span>
           </div>
 
-          <div className="mb-4 flex gap-3 lg:absolute lg:right-10 lg:top-8 lg:z-[9999]">
+          <div className="absolute right-10 top-8 z-[9999] flex gap-3">
             {["☼", "♧", "✉", "👨"].map((i) => (
               <button key={i} className="h-11 w-11 rounded-full border border-white/10 bg-black/45">
                 {i}
@@ -272,11 +274,11 @@ export default function Home() {
             </button>
           </div>
 
-          <div className="mb-4 flex gap-2 overflow-x-auto rounded-3xl border border-white/10 bg-black/55 p-2 lg:absolute lg:left-10 lg:top-[120px] lg:z-[9999] lg:w-[58px] lg:flex-col">
+          <div className="absolute left-10 top-[120px] z-[9999] flex w-[58px] flex-col gap-3 rounded-3xl border border-white/10 bg-black/55 p-2">
             {["⌂", "▦", "▶", "$", "▥", "♚", "◴", "✉", "⚙"].map((item, i) => (
               <button
                 key={i}
-                className={`flex h-11 min-w-11 items-center justify-center rounded-2xl text-lg ${
+                className={`flex h-11 w-11 items-center justify-center rounded-2xl text-lg ${
                   i === 0 ? "bg-emerald-400 text-black" : "bg-white/5 text-white/80"
                 }`}
               >
@@ -285,7 +287,7 @@ export default function Home() {
             ))}
           </div>
 
-          <Box pos={positions.time} z={zIndexes.time} onMouseDown={(e) => startDrag("time", e)} w="180px" h="90px">
+          <Box pos={positions.time} z={zIndexes.time} onPointerDown={(e) => startDrag("time", e)} w="180px" h="90px">
             <div className="flex justify-between">
               <p className="text-3xl font-bold">{time}</p>
               <span>◴</span>
@@ -293,7 +295,7 @@ export default function Home() {
             <p className="mt-2 text-[11px] text-white/60 capitalize">{date}</p>
           </Box>
 
-          <Box pos={positions.weather} z={zIndexes.weather} onMouseDown={(e) => startDrag("weather", e)} w="245px" h="128px">
+          <Box pos={positions.weather} z={zIndexes.weather} onPointerDown={(e) => startDrag("weather", e)} w="255px" h="155px">
             <div className="flex items-center gap-3">
               <span className="text-4xl">⛅</span>
               <div>
@@ -302,14 +304,14 @@ export default function Home() {
                 <p className="text-[11px] text-white/50">{weather.city}</p>
               </div>
             </div>
-            <div className="mt-3 grid grid-cols-3 gap-2 text-[10px] text-white/65">
+            <div className="mt-4 grid grid-cols-3 gap-2 text-[10px] text-white/65">
               <span>Sensação<br /><b>{Number(weather.temp) + 1}°C</b></span>
               <span>Umidade<br /><b>60%</b></span>
               <span>Vento<br /><b>12 km/h</b></span>
             </div>
           </Box>
 
-          <Box pos={positions.reminders} z={zIndexes.reminders} onMouseDown={(e) => startDrag("reminders", e)} w="330px" h="175px">
+          <Box pos={positions.reminders} z={zIndexes.reminders} onPointerDown={(e) => startDrag("reminders", e)} w="330px" h="175px">
             <div className="h-full overflow-y-auto pr-1">
               <div className="mb-2 flex justify-between">
                 <b className="text-sm">Lembretes</b>
@@ -329,7 +331,7 @@ export default function Home() {
             </div>
           </Box>
 
-          <Box pos={positions.prices} z={zIndexes.prices} onMouseDown={(e) => startDrag("prices", e)} w="240px" h="160px">
+          <Box pos={positions.prices} z={zIndexes.prices} onPointerDown={(e) => startDrag("prices", e)} w="240px" h="160px">
             <div className="flex justify-between">
               <b className="text-sm">Cotações</b>
               <span className="text-xs text-emerald-300">tempo real</span>
@@ -341,7 +343,7 @@ export default function Home() {
             </div>
           </Box>
 
-          <Box pos={positions.hero} z={zIndexes.hero} onMouseDown={(e) => startDrag("hero", e)} w="370px" h="250px">
+          <Box pos={positions.hero} z={zIndexes.hero} onPointerDown={(e) => startDrag("hero", e)} w="370px" h="250px">
             <div className="h-full overflow-y-auto pr-1">
               <p className="text-xs uppercase tracking-[0.25em] text-white/45">Sua casa digital</p>
               <h2 className="mt-2 text-3xl font-black leading-tight">
@@ -365,7 +367,7 @@ export default function Home() {
             </div>
           </Box>
 
-          <Box pos={positions.courses} z={zIndexes.courses} onMouseDown={(e) => startDrag("courses", e)} w="365px" h="215px">
+          <Box pos={positions.courses} z={zIndexes.courses} onPointerDown={(e) => startDrag("courses", e)} w="365px" h="215px">
             <div className="h-full overflow-y-auto pr-1">
               <b className="text-sm">Cursos Únicos</b>
               <p className="mt-3 text-xs leading-5 text-white/75">
@@ -380,7 +382,7 @@ export default function Home() {
             </div>
           </Box>
 
-          <Box pos={positions.actions} z={zIndexes.actions} onMouseDown={(e) => startDrag("actions", e)} w="330px" h="205px" p="p-2">
+          <Box pos={positions.actions} z={zIndexes.actions} onPointerDown={(e) => startDrag("actions", e)} w="330px" h="205px" p="p-2">
             <div className="grid h-full grid-cols-4 gap-1">
               {actions.map(([icon, label]) => (
                 <button key={label} className="rounded-xl border border-white/10 bg-black/25 text-[10px] hover:bg-white/10">
@@ -391,7 +393,7 @@ export default function Home() {
             </div>
           </Box>
 
-          <Box pos={positions.discussions} z={zIndexes.discussions} onMouseDown={(e) => startDrag("discussions", e)} w="500px" h="390px">
+          <Box pos={positions.discussions} z={zIndexes.discussions} onPointerDown={(e) => startDrag("discussions", e)} w="500px" h="390px">
             <div className="h-full overflow-hidden">
               <div className="mb-3 flex justify-between">
                 <b className="text-sm">Discussões em Destaque</b>
@@ -427,7 +429,7 @@ export default function Home() {
             </div>
           </Box>
 
-          <Box pos={positions.videos} z={zIndexes.videos} onMouseDown={(e) => startDrag("videos", e)} w="490px" h="360px">
+          <Box pos={positions.videos} z={zIndexes.videos} onPointerDown={(e) => startDrag("videos", e)} w="500px" h="395px">
             <div className="h-full overflow-y-auto pr-1">
               <div className="mb-3 flex justify-between">
                 <b className="text-sm">TV Money Is Over</b>
@@ -435,7 +437,7 @@ export default function Home() {
               </div>
               <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/35">
                 <video
-                  className="h-[160px] w-full object-cover"
+                  className="h-[170px] w-full object-cover"
                   autoPlay
                   loop
                   muted
@@ -453,7 +455,7 @@ export default function Home() {
               <div className="mt-3 grid grid-cols-6 gap-2">
                 {videos.map((v, i) => (
                   <div key={v} className="overflow-hidden rounded-xl bg-white/10">
-                    <div className="relative flex h-[52px] items-center justify-center bg-emerald-400/10 text-lg">
+                    <div className="relative flex h-[58px] items-center justify-center bg-emerald-400/10 text-lg">
                       ▶
                       <span className="absolute bottom-1 right-1 rounded bg-black/60 px-1 text-[8px]">
                         0{i + 1}:4{i}
@@ -466,7 +468,7 @@ export default function Home() {
             </div>
           </Box>
 
-          <Box pos={positions.calendar} z={zIndexes.calendar} onMouseDown={(e) => startDrag("calendar", e)} w="240px" h="215px">
+          <Box pos={positions.calendar} z={zIndexes.calendar} onPointerDown={(e) => startDrag("calendar", e)} w="240px" h="215px">
             <div className="h-full overflow-hidden">
               <div className="mb-3 flex justify-between">
                 <button>‹</button>
@@ -496,7 +498,7 @@ export default function Home() {
 function Box({
   children,
   pos,
-  onMouseDown,
+  onPointerDown,
   w,
   h,
   p = "p-5",
@@ -504,7 +506,7 @@ function Box({
 }: {
   children: ReactNode;
   pos: { x: number; y: number };
-  onMouseDown: (e: MouseEvent<HTMLDivElement>) => void;
+  onPointerDown: (e: PointerEvent<HTMLDivElement>) => void;
   w: string;
   h: string;
   p?: string;
@@ -512,7 +514,7 @@ function Box({
 }) {
   return (
     <div
-      onMouseDown={onMouseDown}
+      onPointerDown={onPointerDown}
       style={{
         left: pos.x,
         top: pos.y,
@@ -520,8 +522,9 @@ function Box({
         height: h,
         cursor: "move",
         zIndex: z,
+        touchAction: "none",
       }}
-      className={`mb-4 overflow-visible rounded-[24px] border border-white/12 bg-black/55 ${p} shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-md lg:absolute lg:mb-0 lg:overflow-hidden`}
+      className={`absolute overflow-hidden rounded-[24px] border border-white/12 bg-black/55 ${p} shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-md`}
     >
       {children}
     </div>
