@@ -1,1 +1,241 @@
 
+"use client";
+
+import { useEffect, useState } from "react";
+
+export default function MobileHome() {
+  const [time, setTime] = useState("");
+  const [weather, setWeather] = useState("28");
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTime(
+        new Date().toLocaleTimeString("pt-BR", {
+          hour: "2-digit",
+          minute: "2-digit",
+        })
+      );
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!navigator.geolocation) return;
+
+    navigator.geolocation.getCurrentPosition(async (pos) => {
+      try {
+        const { latitude, longitude } = pos.coords;
+
+        const res = await fetch(
+          `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m`
+        );
+
+        const data = await res.json();
+        setWeather(Math.round(data.current.temperature_2m).toString());
+      } catch {}
+    });
+  }, []);
+
+  const discussions = [
+    ["💼", "Estou pensando em mudar de carreira", "Preciso de opiniões sinceras de quem já passou por isso.", "42 respostas"],
+    ["💔", "Meu relacionamento terminou", "Quero desabafar e ouvir experiências reais.", "28 respostas"],
+    ["🧠", "Como vencer a procrastinação?", "Sinto que repito os mesmos erros todos os dias.", "19 respostas"],
+    ["💸", "Estou perdido financeiramente", "Como vocês começariam do zero?", "36 respostas"],
+  ];
+
+  const videos = [
+    "Distribuição de alimentos",
+    "Ajuda a idoso",
+    "Doação de roupas",
+    "Aula gratuita",
+  ];
+
+  return (
+    <main className="min-h-screen bg-black text-white">
+      <div
+        className="fixed inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/fundo.png')",
+        }}
+      />
+
+      <div className="fixed inset-0 bg-black/45" />
+
+      <section className="relative z-10 mx-auto max-w-md px-4 pb-24 pt-5">
+        <header className="mb-5 flex items-center justify-between">
+          <div>
+            <h1 className="text-xl font-black tracking-wide">
+              MONEY IS OVER
+            </h1>
+            <p className="text-xs text-white/55">Sua casa digital</p>
+          </div>
+
+          <div className="rounded-full border border-white/10 bg-black/50 px-4 py-2 text-xs backdrop-blur-md">
+            {time}
+          </div>
+        </header>
+
+        <div className="mb-4 grid grid-cols-3 gap-3">
+          <div className="rounded-3xl border border-white/10 bg-black/55 p-4 backdrop-blur-md">
+            <p className="text-xs text-white/50">Clima</p>
+            <p className="mt-1 text-2xl font-bold">{weather}°C</p>
+          </div>
+
+          <div className="rounded-3xl border border-white/10 bg-black/55 p-4 backdrop-blur-md">
+            <p className="text-xs text-white/50">Moedas</p>
+            <p className="mt-1 text-2xl font-bold">124</p>
+          </div>
+
+          <div className="rounded-3xl border border-white/10 bg-black/55 p-4 backdrop-blur-md">
+            <p className="text-xs text-white/50">Nível</p>
+            <p className="mt-1 text-2xl font-bold">12</p>
+          </div>
+        </div>
+
+        <div className="mb-4 rounded-[28px] border border-white/10 bg-black/60 p-5 backdrop-blur-md">
+          <p className="text-xs uppercase tracking-[0.25em] text-emerald-300">
+            Nobank Coin
+          </p>
+
+          <h2 className="mt-2 text-2xl font-black leading-tight">
+            Ajude, desabafe, aprenda e ganhe moedas.
+          </h2>
+
+          <p className="mt-3 text-sm leading-6 text-white/65">
+            Cada postagem ou resposta útil gera +1 Nobank Coin. Vídeos de ajuda
+            aprovados geram +2.
+          </p>
+
+          <div className="mt-5 grid grid-cols-2 gap-3">
+            <button className="rounded-2xl bg-emerald-400 px-4 py-3 text-sm font-bold text-black">
+              Peça ajuda
+            </button>
+
+            <button className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm font-bold">
+              Enviar vídeo
+            </button>
+          </div>
+        </div>
+
+        <section className="mb-4 rounded-[28px] border border-white/10 bg-black/60 p-4 backdrop-blur-md">
+          <div className="mb-4 flex items-center justify-between">
+            <h3 className="font-bold">Discussões</h3>
+            <button className="text-xs text-emerald-300">Ver todas</button>
+          </div>
+
+          <div className="mb-4 rounded-2xl border border-white/10 bg-white/5 p-3">
+            <p className="mb-2 text-xs font-semibold text-white/80">
+              Peça ajuda, desabafe, peça opinião, escreva algo...
+            </p>
+
+            <textarea
+              placeholder="Escreva aqui..."
+              className="h-20 w-full resize-none rounded-2xl border border-white/10 bg-black/40 p-3 text-sm outline-none placeholder:text-white/35"
+            />
+
+            <button className="mt-3 w-full rounded-2xl bg-emerald-400 py-3 text-sm font-bold text-black">
+              Enviar e ganhar +1 Nobank Coin
+            </button>
+          </div>
+
+          <div className="space-y-3">
+            {discussions.map((item) => (
+              <article
+                key={item[1]}
+                className="rounded-2xl border border-white/10 bg-white/5 p-4"
+              >
+                <div className="flex gap-3">
+                  <span className="text-2xl">{item[0]}</span>
+
+                  <div>
+                    <h4 className="font-bold">{item[1]}</h4>
+                    <p className="mt-1 text-sm leading-5 text-white/60">
+                      {item[2]}
+                    </p>
+
+                    <div className="mt-3 flex items-center justify-between text-xs">
+                      <span className="text-white/45">{item[3]}</span>
+                      <button className="font-bold text-emerald-300">
+                        Responder +1
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="mb-4 rounded-[28px] border border-white/10 bg-black/60 p-4 backdrop-blur-md">
+          <div className="mb-3 flex items-center justify-between">
+            <h3 className="font-bold">TV Money Is Over</h3>
+            <button className="text-xs text-emerald-300">Ver todos</button>
+          </div>
+
+          <div className="overflow-hidden rounded-3xl border border-white/10 bg-black/50">
+            <video
+              className="h-56 w-full object-cover"
+              autoPlay
+              loop
+              muted
+              playsInline
+              src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+            />
+
+            <div className="p-3">
+              <p className="text-sm font-bold">Ação em destaque</p>
+              <p className="text-xs text-white/55">
+                Vídeo automático sem som • +2 Nobank Coins
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            {videos.map((video) => (
+              <div
+                key={video}
+                className="rounded-2xl border border-white/10 bg-white/5 p-3"
+              >
+                <div className="mb-2 flex h-20 items-center justify-center rounded-xl bg-emerald-400/10 text-2xl">
+                  ▶
+                </div>
+                <p className="text-xs font-bold">{video}</p>
+                <p className="text-xs text-emerald-300">+2 Nobank Coins</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mb-4 rounded-[28px] border border-white/10 bg-black/60 p-5 backdrop-blur-md">
+          <p className="text-xs uppercase tracking-[0.25em] text-emerald-300">
+            Curso do dia
+          </p>
+
+          <h3 className="mt-2 text-xl font-black">Cursos Únicos</h3>
+
+          <p className="mt-3 text-sm leading-6 text-white/65">
+            Você sabia que sem treinar metacognição você repete os mesmos erros?
+          </p>
+
+          <button className="mt-4 rounded-2xl bg-emerald-400 px-5 py-3 text-sm font-bold text-black">
+            Assistir aula
+          </button>
+        </section>
+      </section>
+
+      <nav className="fixed bottom-4 left-1/2 z-20 flex w-[92%] max-w-md -translate-x-1/2 justify-between rounded-full border border-white/10 bg-black/75 px-5 py-3 backdrop-blur-xl">
+        {["⌂", "💬", "▶", "🎓", "👤"].map((item, i) => (
+          <button
+            key={item}
+            className={`flex h-11 w-11 items-center justify-center rounded-full text-lg ${
+              i === 0 ? "bg-emerald-400 text-black" : "text-white/70"
+            }`}
+          >
+            {item}
+          </button>
+        ))}
+      </nav>
+    </main>
+  );
+}
