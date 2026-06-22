@@ -144,7 +144,7 @@ export default function MobileHome() {
           </p>
 
           <h2 className="mt-2 text-2xl font-black leading-tight">
-            Ajude, desabafe, aprenda e ganhe moedas.
+            Ajude, desabafe, aprenda,ganhe moedas e ganhe seguidores.
           </h2>
 
           <p className="mt-3 text-sm leading-6 text-white/65">
