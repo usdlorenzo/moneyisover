@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -42,6 +41,22 @@ export default function MobileHome() {
     ["💔", "Meu relacionamento terminou", "Quero desabafar e ouvir experiências reais.", "28 respostas"],
     ["🧠", "Como vencer a procrastinação?", "Sinto que repito os mesmos erros todos os dias.", "19 respostas"],
     ["💸", "Estou perdido financeiramente", "Como vocês começariam do zero?", "36 respostas"],
+    ["🚀", "Vale a pena abrir empresa?", "Tenho medo de largar a segurança e tentar algo próprio.", "51 respostas"],
+    ["🎓", "Faculdade ainda compensa?", "Com IA e cursos online, fico em dúvida se vale o investimento.", "33 respostas"],
+    ["❤️", "Como lidar com rejeição?", "Sinto que isso mexe muito com minha autoestima.", "67 respostas"],
+    ["🏙️", "Mudar de cidade muda a vida?", "Penso em recomeçar em outro lugar.", "24 respostas"],
+    ["📚", "Como estudar com foco?", "Começo motivado e desisto rápido.", "18 respostas"],
+    ["⚖️", "Empreender ou CLT?", "O que vocês fariam se estivessem começando agora?", "44 respostas"],
+    ["🧩", "Como entender melhor minhas emoções?", "Às vezes eu reajo antes de pensar.", "31 respostas"],
+    ["💬", "Preciso de uma opinião sincera", "Estou confuso sobre uma decisão importante.", "22 respostas"],
+    ["🪙", "Como ganhar mais dinheiro?", "Quero sair do básico e construir algo maior.", "58 respostas"],
+    ["🌱", "Como começar do zero?", "Sinto que perdi muito tempo.", "73 respostas"],
+    ["🔥", "Como manter disciplina?", "Tenho energia no começo e depois abandono.", "39 respostas"],
+    ["👥", "Como fazer amigos adultos?", "Depois de certa idade parece mais difícil.", "27 respostas"],
+    ["🧘", "Como controlar ansiedade?", "Minha mente não para.", "46 respostas"],
+    ["🎥", "Criar conteúdo vale a pena?", "Tenho ideias, mas medo de aparecer.", "21 respostas"],
+    ["🧠", "Metacognição funciona mesmo?", "Quero aprender a pensar melhor.", "17 respostas"],
+    ["🌎", "Trabalhar remoto é possível?", "Quero mudar minha vida nos próximos anos.", "62 respostas"],
   ];
 
   const videos = [
@@ -53,6 +68,36 @@ export default function MobileHome() {
 
   return (
     <main className="min-h-screen bg-black text-white">
+      <style jsx global>{`
+        @keyframes softPulse {
+          0%, 100% {
+            transform: scale(1);
+            box-shadow: 0 0 0 rgba(52, 211, 153, 0);
+          }
+          50% {
+            transform: scale(1.035);
+            box-shadow: 0 0 22px rgba(52, 211, 153, 0.35);
+          }
+        }
+
+        @keyframes tinyFloat {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-3px);
+          }
+        }
+
+        .nobank-action {
+          animation: softPulse 2.2s infinite ease-in-out;
+        }
+
+        .nobank-float {
+          animation: tinyFloat 1.8s infinite ease-in-out;
+        }
+      `}</style>
+
       <div
         className="fixed inset-0 bg-cover bg-center"
         style={{
@@ -108,11 +153,11 @@ export default function MobileHome() {
           </p>
 
           <div className="mt-5 grid grid-cols-2 gap-3">
-            <button className="rounded-2xl bg-emerald-400 px-4 py-3 text-sm font-bold text-black">
+            <button className="nobank-action rounded-2xl bg-emerald-400 px-4 py-3 text-sm font-bold text-black">
               Peça ajuda
             </button>
 
-            <button className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm font-bold">
+            <button className="nobank-float rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm font-bold">
               Enviar vídeo
             </button>
           </div>
@@ -134,7 +179,7 @@ export default function MobileHome() {
               className="h-20 w-full resize-none rounded-2xl border border-white/10 bg-black/40 p-3 text-sm outline-none placeholder:text-white/35"
             />
 
-            <button className="mt-3 w-full rounded-2xl bg-emerald-400 py-3 text-sm font-bold text-black">
+            <button className="nobank-action mt-3 w-full rounded-2xl bg-emerald-400 py-3 text-sm font-bold text-black">
               Enviar e ganhar +1 Nobank Coin
             </button>
           </div>
@@ -148,7 +193,7 @@ export default function MobileHome() {
                 <div className="flex gap-3">
                   <span className="text-2xl">{item[0]}</span>
 
-                  <div>
+                  <div className="w-full">
                     <h4 className="font-bold">{item[1]}</h4>
                     <p className="mt-1 text-sm leading-5 text-white/60">
                       {item[2]}
@@ -156,10 +201,12 @@ export default function MobileHome() {
 
                     <div className="mt-3 flex items-center justify-between text-xs">
                       <span className="text-white/45">{item[3]}</span>
-                      <button className="font-bold text-emerald-300">
-                        Responder +1
-                      </button>
+                      <span className="text-emerald-300">+1 Nobank Coin</span>
                     </div>
+
+                    <button className="nobank-action mt-3 w-full rounded-2xl bg-emerald-400 px-4 py-3 text-xs font-black text-black">
+                      Responda e ganhe 1 Nobank Coin
+                    </button>
                   </div>
                 </div>
               </article>
@@ -201,7 +248,9 @@ export default function MobileHome() {
                   ▶
                 </div>
                 <p className="text-xs font-bold">{video}</p>
-                <p className="text-xs text-emerald-300">+2 Nobank Coins</p>
+                <button className="nobank-action mt-2 w-full rounded-xl bg-emerald-400 py-2 text-[11px] font-bold text-black">
+                  Assistir +2 Coins
+                </button>
               </div>
             ))}
           </div>
@@ -218,7 +267,7 @@ export default function MobileHome() {
             Você sabia que sem treinar metacognição você repete os mesmos erros?
           </p>
 
-          <button className="mt-4 rounded-2xl bg-emerald-400 px-5 py-3 text-sm font-bold text-black">
+          <button className="nobank-action mt-4 w-full rounded-2xl bg-emerald-400 px-5 py-3 text-sm font-bold text-black">
             Assistir aula
           </button>
         </section>
