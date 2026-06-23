@@ -1,6 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { auth, db } from "../../lib/firebase";
+import { GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "firebase/auth";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import type { User } from "firebase/auth";
 
 export default function MobileHome() {
   const [time, setTime] = useState("");
