@@ -3,12 +3,9 @@
 import { useEffect, useState } from "react";
 
 export default function MobileHome() {
-const autoResize = (
-  e: React.FormEvent<HTMLTextAreaElement>
-) => {
-const [postText, setPostText] = useState("");
   const [time, setTime] = useState("");
   const [weather, setWeather] = useState("28");
+  const [postText, setPostText] = useState("");
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -127,15 +124,16 @@ const [postText, setPostText] = useState("");
       <section className="relative z-10 mx-auto max-w-md px-4 pb-24 pt-5">
         <header className="mb-5 flex items-center justify-between">
           <div>
-       <img
-  src="/logo.png"
-  alt="Money Is Over"
-  className="w-full max-w-[320px] mx-auto object-contain"
-/>
-           <p className="mt-2 max-w-[250px] rounded-2xl border border-emerald-300/40 bg-black/80 px-3 py-2 text-[13px] font-black leading-5 text-emerald-200 shadow-[0_0_22px_rgba(52,211,153,0.35)] backdrop-blur-xl">
-  Ajude ou Peça Ajuda e Ganhe Moedas para trocar por produtos ou serviços, uma
-  nova forma de adquirir coisas.
-</p>
+            <img
+              src="/logo.png"
+              alt="Money Is Over"
+              className="mx-auto w-full max-w-[320px] object-contain"
+            />
+
+            <p className="mt-2 max-w-[250px] rounded-2xl border border-emerald-300/40 bg-black/80 px-3 py-2 text-[13px] font-black leading-5 text-emerald-200 shadow-[0_0_22px_rgba(52,211,153,0.35)] backdrop-blur-xl">
+              Ajude ou Peça Ajuda e Ganhe Moedas para trocar por produtos ou
+              serviços, uma nova forma de adquirir coisas.
+            </p>
           </div>
 
           <div className="rounded-full border border-white/10 bg-black/50 px-4 py-2 text-xs backdrop-blur-md">
@@ -143,7 +141,7 @@ const [postText, setPostText] = useState("");
           </div>
         </header>
 
-        <div className="mb-4 rounded-[28px] border border-emerald-300/40 bg-gradient-to-br from-emerald-400/25 via-black/75 to-black/85 p-5 backdrop-blur-md nobank-highlight">
+        <div className="nobank-highlight mb-4 rounded-[28px] border border-emerald-300/40 bg-gradient-to-br from-emerald-400/25 via-black/75 to-black/85 p-5 backdrop-blur-md">
           <p className="text-xs uppercase tracking-[0.25em] text-emerald-300">
             Nobank Coin
           </p>
@@ -178,16 +176,18 @@ const [postText, setPostText] = useState("");
             <button className="text-xs text-emerald-300">Ver todas</button>
           </div>
 
-          <div className="mb-4 rounded-3xl border border-emerald-300/30 bg-emerald-400/10 p-4">
+          <div className="mb-4 rounded-3xl border border-emerald-300/30 bg-emerald-400/10 p-4 transition-all duration-300">
             <p className="mb-3 text-xl font-black text-emerald-300">
               Escreva Aqui....
             </p>
-<textarea
-  value={postText}
-  onChange={(e) => setPostText(e.target.value)}
-  rows={Math.max(3, postText.split("\n").length)}
-  className="..."
-/>
+
+            <textarea
+              value={postText}
+              onChange={(e) => setPostText(e.target.value)}
+              placeholder="Peça ajuda, desabafe, peça opinião..."
+              rows={Math.max(3, postText.split("\n").length)}
+              className="w-full resize-none overflow-hidden rounded-2xl border border-white/10 bg-black/50 p-4 text-sm leading-6 outline-none placeholder:text-white/35"
+            />
 
             <button className="nobank-action mt-3 w-full rounded-2xl bg-emerald-400 py-3 text-sm font-bold text-black">
               Enviar e ganhar +1 Nobank Coin
