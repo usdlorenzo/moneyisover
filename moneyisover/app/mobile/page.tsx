@@ -89,12 +89,25 @@ export default function MobileHome() {
           }
         }
 
+        @keyframes glowBorder {
+          0%, 100% {
+            box-shadow: 0 0 18px rgba(52, 211, 153, 0.22);
+          }
+          50% {
+            box-shadow: 0 0 34px rgba(52, 211, 153, 0.48);
+          }
+        }
+
         .nobank-action {
           animation: softPulse 2.2s infinite ease-in-out;
         }
 
         .nobank-float {
           animation: tinyFloat 1.8s infinite ease-in-out;
+        }
+
+        .nobank-highlight {
+          animation: glowBorder 2.4s infinite ease-in-out;
         }
       `}</style>
 
@@ -113,7 +126,10 @@ export default function MobileHome() {
             <h1 className="text-xl font-black tracking-wide">
               MONEY IS OVER
             </h1>
-            <p className="text-xs text-white/55">Sua casa digital</p>
+            <p className="text-xs text-white/55">
+              Ajude ou Peça Ajuda e Ganhe Moedas para trocar por produtos ou
+              serviços, uma nova forma de adquirir coisas.
+            </p>
           </div>
 
           <div className="rounded-full border border-white/10 bg-black/50 px-4 py-2 text-xs backdrop-blur-md">
@@ -121,33 +137,20 @@ export default function MobileHome() {
           </div>
         </header>
 
-        <div className="mb-4 grid grid-cols-3 gap-3">
-          <div className="rounded-3xl border border-white/10 bg-black/55 p-4 backdrop-blur-md">
-            <p className="text-xs text-white/50">Clima</p>
-            <p className="mt-1 text-2xl font-bold">{weather}°C</p>
-          </div>
-
-          <div className="rounded-3xl border border-white/10 bg-black/55 p-4 backdrop-blur-md">
-            <p className="text-xs text-white/50">Moedas</p>
-            <p className="mt-1 text-2xl font-bold">124</p>
-          </div>
-
-          <div className="rounded-3xl border border-white/10 bg-black/55 p-4 backdrop-blur-md">
-            <p className="text-xs text-white/50">Nível</p>
-            <p className="mt-1 text-2xl font-bold">12</p>
-          </div>
-        </div>
-
-        <div className="mb-4 rounded-[28px] border border-white/10 bg-black/60 p-5 backdrop-blur-md">
+        <div className="mb-4 rounded-[28px] border border-emerald-300/40 bg-gradient-to-br from-emerald-400/25 via-black/75 to-black/85 p-5 backdrop-blur-md nobank-highlight">
           <p className="text-xs uppercase tracking-[0.25em] text-emerald-300">
             Nobank Coin
           </p>
 
           <h2 className="mt-2 text-2xl font-black leading-tight">
-            Ajude o próximo, desabafe, aprenda,ganhe moedas e ganhe seguidores.
+            Você não está sozinho(a)
           </h2>
 
-          <p className="mt-3 text-sm leading-6 text-white/65">
+          <p className="mt-3 text-base font-semibold leading-6 text-white">
+            Peça ajuda, desabafe, nossa comunidade vai ajudar você!
+          </p>
+
+          <p className="mt-3 text-sm leading-6 text-white/70">
             Cada postagem ou resposta útil gera +1 Nobank Coin. Vídeos de ajuda
             aprovados geram +2.
           </p>
@@ -157,7 +160,7 @@ export default function MobileHome() {
               Peça ajuda
             </button>
 
-            <button className="nobank-float rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm font-bold">
+            <button className="nobank-float rounded-2xl border border-emerald-300/30 bg-white/10 px-4 py-3 text-sm font-bold">
               Enviar vídeo
             </button>
           </div>
@@ -169,14 +172,14 @@ export default function MobileHome() {
             <button className="text-xs text-emerald-300">Ver todas</button>
           </div>
 
-          <div className="mb-4 rounded-2xl border border-white/10 bg-white/5 p-3">
-            <p className="mb-2 text-xs font-semibold text-white/80">
-              Peça ajuda, desabafe, peça opinião, escreva algo...
+          <div className="mb-4 rounded-3xl border border-emerald-300/30 bg-emerald-400/10 p-4">
+            <p className="mb-3 text-xl font-black text-emerald-300">
+              Escreva Aqui....
             </p>
 
             <textarea
-              placeholder="Escreva aqui..."
-              className="h-20 w-full resize-none rounded-2xl border border-white/10 bg-black/40 p-3 text-sm outline-none placeholder:text-white/35"
+              placeholder="Peça ajuda, desabafe, peça opinião..."
+              className="h-24 w-full resize-none rounded-2xl border border-white/10 bg-black/50 p-3 text-sm outline-none placeholder:text-white/35"
             />
 
             <button className="nobank-action mt-3 w-full rounded-2xl bg-emerald-400 py-3 text-sm font-bold text-black">
