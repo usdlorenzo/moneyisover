@@ -149,6 +149,35 @@ const handleSubmitPost = async () => {
       <div className="fixed inset-0 bg-black/45" />
 
       <section className="relative z-10 mx-auto max-w-md px-4 pb-24 pt-5">
+
+        {showLogin && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4">
+    <div className="w-full max-w-sm rounded-3xl border border-emerald-300/30 bg-black p-6 text-center shadow-[0_0_35px_rgba(52,211,153,0.35)]">
+      <h2 className="text-2xl font-black text-emerald-300">
+        Entre para publicar
+      </h2>
+
+      <p className="mt-3 text-sm leading-6 text-white/70">
+        Para proteger a comunidade, você precisa entrar antes de enviar sua
+        mensagem.
+      </p>
+
+      <button
+        onClick={loginWithGoogle}
+        className="mt-5 w-full rounded-2xl bg-white px-4 py-3 text-sm font-black text-black"
+      >
+        Continuar com Google
+      </button>
+
+      <button
+        onClick={() => setShowLogin(false)}
+        className="mt-3 text-xs text-white/50"
+      >
+        Cancelar
+      </button>
+    </div>
+  </div>
+)}
         <header className="mb-5 flex items-center justify-between">
           <div>
             <img
