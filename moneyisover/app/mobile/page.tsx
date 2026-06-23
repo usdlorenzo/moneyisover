@@ -263,17 +263,19 @@ const handleSubmitPost = async () => {
               Escreva Aqui....
             </p>
 
-            <textarea
-              value={postText}
-              onChange={(e) => setPostText(e.target.value)}
-              placeholder="Peça ajuda, desabafe, peça opinião..."
-              rows={Math.max(3, postText.split("\n").length)}
-              className="w-full resize-none overflow-hidden rounded-2xl border border-white/10 bg-black/50 p-4 text-sm leading-6 outline-none placeholder:text-white/35"
-            />
+          <textarea
+  value={postText}
+  onChange={(e) => {
+    setPostText(e.target.value);
+  }}
+  placeholder="Peça ajuda, desabafe, peça opinião..."
+  rows={Math.max(3, postText.split("\n").length)}
+  className="w-full resize-none overflow-hidden rounded-2xl border border-white/10 bg-black/50 p-4 text-sm leading-6 outline-none placeholder:text-white/35"
+/>
 <button
   type="button"
   onClick={() => {
-    alert("Chamando handleSubmitPost");
+    alert("Texto digitado: " + postText);
     handleSubmitPost();
   }}
   className="nobank-action mt-3 w-full rounded-2xl bg-emerald-400 py-3 text-sm font-bold text-black"
