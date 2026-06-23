@@ -3,7 +3,7 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAsvlYRE-EbU1tkg6ktyUv89qLI_ZqLJ64",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: "money-is-over.firebaseapp.com",
   projectId: "money-is-over",
   storageBucket: "money-is-over.firebasestorage.app",
