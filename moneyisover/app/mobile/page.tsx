@@ -53,11 +53,11 @@ const [successMessage, setSuccessMessage] = useState("");
 const handleSubmitPost = async () => {
   if (!postText.trim()) return;
 
-  if (!user) {
-    setShowLogin(true);
-    return;
-  }
-
+if (!user) {
+  alert("Entrou na parte de login");
+  setShowLogin(true);
+  return;
+}
   await addDoc(collection(db, "posts"), {
     text: postText,
     authorId: user.uid,
