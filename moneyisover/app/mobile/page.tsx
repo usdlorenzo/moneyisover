@@ -57,20 +57,12 @@ useEffect(() => {
   setShowLogin(false);
 };
 const handleSubmitPost = async () => {
-  alert("Entrou na função");
-
-  if (!postText.trim()) {
-    alert("Campo vazio");
-    return;
-  }
+  if (!postText.trim()) return;
 
   if (!user) {
-    alert("Usuário não logado");
     setShowLogin(true);
     return;
   }
-
-  alert("Vai salvar no Firebase");
 
   await addDoc(collection(db, "posts"), {
     text: postText,
@@ -84,8 +76,9 @@ const handleSubmitPost = async () => {
   });
 
   setPostText("");
+
   setSuccessMessage(
-    "Sua mensagem está em análise pelo nosso time e logo será publicada. Autorize as notificações para receber novidades da sua mensagem."
+    "Sua mensagem está em análise pelo nosso time e logo será publicada. Autorize as notificações para receber novidades."
   );
 };
   
@@ -311,10 +304,7 @@ const handleSubmitPost = async () => {
 />
 <button
   type="button"
-  onClick={() => {
-    alert("Texto digitado: " + postText);
-    handleSubmitPost();
-  }}
+  onClick={handleSubmitPost}
   className="nobank-action mt-3 w-full rounded-2xl bg-emerald-400 py-3 text-sm font-bold text-black"
 >
   Enviar e ganhar +1 Nobank Coin
