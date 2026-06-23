@@ -3,11 +3,13 @@
 import { useEffect, useState } from "react";
 
 export default function MobileHome() {
-  const autoResize = (
-  e: React.ChangeEvent<HTMLTextAreaElement>
+const autoResize = (
+  e: React.FormEvent<HTMLTextAreaElement>
 ) => {
-  e.target.style.height = "auto";
-  e.target.style.height = `${e.target.scrollHeight}px`;
+  const textarea = e.currentTarget;
+
+  textarea.style.height = "auto";
+  textarea.style.height = textarea.scrollHeight + "px";
 };
   const [time, setTime] = useState("");
   const [weather, setWeather] = useState("28");
@@ -189,8 +191,8 @@ export default function MobileHome() {
   placeholder="Peça ajuda, desabafe, peça opinião..."
   rows={1}
   onInput={autoResize}
+  style={{ height: "60px" }}
   className="
-    min-h-[60px]
     w-full
     resize-none
     overflow-hidden
