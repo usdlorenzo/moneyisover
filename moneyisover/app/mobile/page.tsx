@@ -3,6 +3,12 @@
 import { useEffect, useState } from "react";
 
 export default function MobileHome() {
+  const autoResize = (
+  e: React.ChangeEvent<HTMLTextAreaElement>
+) => {
+  e.target.style.height = "auto";
+  e.target.style.height = `${e.target.scrollHeight}px`;
+};
   const [time, setTime] = useState("");
   const [weather, setWeather] = useState("28");
 
@@ -179,10 +185,25 @@ export default function MobileHome() {
               Escreva Aqui....
             </p>
 
-            <textarea
-              placeholder="Peça ajuda, desabafe, peça opinião..."
-              className="h-24 w-full resize-none rounded-2xl border border-white/10 bg-black/50 p-3 text-sm outline-none placeholder:text-white/35"
-            />
+           <textarea
+  placeholder="Peça ajuda, desabafe, peça opinião..."
+  rows={1}
+  onInput={autoResize}
+  className="
+    min-h-[60px]
+    w-full
+    resize-none
+    overflow-hidden
+    rounded-2xl
+    border
+    border-white/10
+    bg-black/50
+    p-4
+    text-sm
+    outline-none
+    placeholder:text-white/35
+  "
+/>
 
             <button className="nobank-action mt-3 w-full rounded-2xl bg-emerald-400 py-3 text-sm font-bold text-black">
               Enviar e ganhar +1 Nobank Coin
