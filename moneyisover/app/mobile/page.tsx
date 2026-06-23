@@ -123,10 +123,10 @@ export default function MobileHome() {
       <section className="relative z-10 mx-auto max-w-md px-4 pb-24 pt-5">
         <header className="mb-5 flex items-center justify-between">
           <div>
-         <img
+       <img
   src="/logo.png"
   alt="Money Is Over"
-  className="h-16 w-auto"
+  className="w-full max-w-[320px] mx-auto object-contain"
 />
            <p className="mt-2 max-w-[250px] rounded-2xl border border-emerald-300/40 bg-black/80 px-3 py-2 text-[13px] font-black leading-5 text-emerald-200 shadow-[0_0_22px_rgba(52,211,153,0.35)] backdrop-blur-xl">
   Ajude ou Peça Ajuda e Ganhe Moedas para trocar por produtos ou serviços, uma
