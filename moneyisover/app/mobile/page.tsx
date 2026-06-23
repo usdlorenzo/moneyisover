@@ -6,11 +6,7 @@ export default function MobileHome() {
 const autoResize = (
   e: React.FormEvent<HTMLTextAreaElement>
 ) => {
-  const textarea = e.currentTarget;
-
-  textarea.style.height = "auto";
-  textarea.style.height = textarea.scrollHeight + "px";
-};
+const [postText, setPostText] = useState("");
   const [time, setTime] = useState("");
   const [weather, setWeather] = useState("28");
 
@@ -186,25 +182,11 @@ const autoResize = (
             <p className="mb-3 text-xl font-black text-emerald-300">
               Escreva Aqui....
             </p>
-
-           <textarea
-  placeholder="Peça ajuda, desabafe, peça opinião..."
-  rows={1}
-  onInput={autoResize}
-  style={{ height: "60px" }}
-  className="
-    w-full
-    resize-none
-    overflow-hidden
-    rounded-2xl
-    border
-    border-white/10
-    bg-black/50
-    p-4
-    text-sm
-    outline-none
-    placeholder:text-white/35
-  "
+<textarea
+  value={postText}
+  onChange={(e) => setPostText(e.target.value)}
+  rows={Math.max(3, postText.split("\n").length)}
+  className="..."
 />
 
             <button className="nobank-action mt-3 w-full rounded-2xl bg-emerald-400 py-3 text-sm font-bold text-black">
