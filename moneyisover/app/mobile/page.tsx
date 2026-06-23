@@ -51,6 +51,38 @@ const [successMessage, setSuccessMessage] = useState("");
   setShowLogin(false);
 };
 const handleSubmitPost = async () => {
+  alert("Entrou na função");
+
+  if (!postText.trim()) {
+    alert("Campo vazio");
+    return;
+  }
+
+  if (!user) {
+    alert("Usuário não logado");
+    setShowLogin(true);
+    return;
+  }
+
+  alert("Vai salvar no Firebase");
+
+  await addDoc(collection(db, "posts"), {
+    text: postText,
+    authorId: user.uid,
+    authorName: user.displayName || "Usuário",
+    authorEmail: user.email || "",
+    status: "pending",
+    type: "post",
+    coins: 1,
+    createdAt: serverTimestamp(),
+  });
+
+  setPostText("");
+  setSuccessMessage(
+    "Sua mensagem está em análise pelo nosso time e logo será publicada. Autorize as notificações para receber novidades da sua mensagem."
+  );
+};
+  
   if (!postText.trim()) return;
 
 if (!user) {
@@ -256,7 +288,10 @@ if (!user) {
             />
 <button
   type="button"
-  onClick={() => alert("Botão clicou")}
+  onClick={() => {
+    alert("Chamando handleSubmitPost");
+    handleSubmitPost();
+  }}
   className="nobank-action mt-3 w-full rounded-2xl bg-emerald-400 py-3 text-sm font-bold text-black"
 >
   Enviar e ganhar +1 Nobank Coin
