@@ -175,8 +175,7 @@ const handleSubmitPost = async () => {
       <div className="fixed inset-0 bg-black/45" />
 
       <section className="relative z-10 mx-auto max-w-md px-4 pb-24 pt-5">
-
-        {showLogin && (
+{showLogin && (
   <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4">
     <div className="w-full max-w-sm rounded-3xl border border-emerald-300/30 bg-black p-6 text-center shadow-[0_0_35px_rgba(52,211,153,0.35)]">
       <h2 className="text-2xl font-black text-emerald-300">
@@ -189,15 +188,53 @@ const handleSubmitPost = async () => {
       </p>
 
       <button
+        type="button"
         onClick={loginWithGoogle}
-        className="mt-5 w-full rounded-2xl bg-white px-4 py-3 text-sm font-black text-black"
+        className="mt-5 flex w-full items-center justify-center gap-3 rounded-2xl bg-white px-4 py-3 text-sm font-black text-black"
       >
+        <span className="text-xl">G</span>
         Continuar com Google
       </button>
 
+      <div className="my-4 flex items-center gap-3">
+        <div className="h-px flex-1 bg-white/10" />
+        <span className="text-xs text-white/40">ou</span>
+        <div className="h-px flex-1 bg-white/10" />
+      </div>
+
+      <input
+        placeholder="Nome"
+        className="mb-3 w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm outline-none placeholder:text-white/35"
+      />
+
+      <input
+        placeholder="E-mail"
+        type="email"
+        className="mb-3 w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm outline-none placeholder:text-white/35"
+      />
+
+      <input
+        placeholder="WhatsApp"
+        className="mb-3 w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm outline-none placeholder:text-white/35"
+      />
+
+      <input
+        placeholder="Senha"
+        type="password"
+        className="mb-4 w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm outline-none placeholder:text-white/35"
+      />
+
       <button
+        type="button"
+        className="w-full rounded-2xl bg-emerald-400 px-4 py-3 text-sm font-black text-black"
+      >
+        Criar conta
+      </button>
+
+      <button
+        type="button"
         onClick={() => setShowLogin(false)}
-        className="mt-3 text-xs text-white/50"
+        className="mt-4 text-xs text-white/50"
       >
         Cancelar
       </button>
