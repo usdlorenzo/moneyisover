@@ -126,10 +126,10 @@ export default function MobileHome() {
             <h1 className="text-xl font-black tracking-wide">
               MONEY IS OVER
             </h1>
-            <p className="text-xs text-white/55">
-              Ajude ou Peça Ajuda e Ganhe Moedas para trocar por produtos ou
-              serviços, uma nova forma de adquirir coisas.
-            </p>
+           <p className="mt-2 max-w-[250px] rounded-2xl border border-emerald-300/40 bg-black/80 px-3 py-2 text-[13px] font-black leading-5 text-emerald-200 shadow-[0_0_22px_rgba(52,211,153,0.35)] backdrop-blur-xl">
+  Ajude ou Peça Ajuda e Ganhe Moedas para trocar por produtos ou serviços, uma
+  nova forma de adquirir coisas.
+</p>
           </div>
 
           <div className="rounded-full border border-white/10 bg-black/50 px-4 py-2 text-xs backdrop-blur-md">
