@@ -44,6 +44,12 @@ const [successMessage, setSuccessMessage] = useState("");
       } catch {}
     });
   }, []);
+
+  const loginWithGoogle = async () => {
+  const provider = new GoogleAuthProvider();
+  await signInWithPopup(auth, provider);
+  setShowLogin(false);
+};
 const handleSubmitPost = async () => {
   if (!postText.trim()) return;
 
