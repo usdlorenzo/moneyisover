@@ -7,9 +7,13 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import type { User } from "firebase/auth";
 
 export default function MobileHome() {
-  const [time, setTime] = useState("");
-  const [weather, setWeather] = useState("28");
-  const [postText, setPostText] = useState("");
+const [time, setTime] = useState("");
+const [weather, setWeather] = useState("28");
+const [postText, setPostText] = useState("");
+
+const [user, setUser] = useState<User | null>(null);
+const [showLogin, setShowLogin] = useState(false);
+const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     const timer = setInterval(() => {
