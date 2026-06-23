@@ -44,7 +44,13 @@ const [successMessage, setSuccessMessage] = useState("");
       } catch {}
     });
   }, []);
+useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser);
+  });
 
+  return () => unsubscribe();
+}, []);
   const loginWithGoogle = async () => {
   const provider = new GoogleAuthProvider();
   await signInWithPopup(auth, provider);
@@ -83,29 +89,7 @@ const handleSubmitPost = async () => {
   );
 };
   
-  if (!postText.trim()) return;
 
-if (!user) {
-  alert("Entrou na parte de login");
-  setShowLogin(true);
-  return;
-}
-  await addDoc(collection(db, "posts"), {
-    text: postText,
-    authorId: user.uid,
-    authorName: user.displayName || "Usuário",
-    authorEmail: user.email || "",
-    status: "pending",
-    type: "post",
-    coins: 1,
-    createdAt: serverTimestamp(),
-  });
-
-  setPostText("");
-  setSuccessMessage(
-    "Sua mensagem está em análise pelo nosso time e logo será publicada. Autorize as notificações para receber novidades da sua mensagem."
-  );
-};
   const discussions = [
     ["💼", "Estou pensando em mudar de carreira", "Preciso de opiniões sinceras de quem já passou por isso.", "42 respostas"],
     ["💔", "Meu relacionamento terminou", "Quero desabafar e ouvir experiências reais.", "28 respostas"],
